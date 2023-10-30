@@ -80,7 +80,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   submitButton.addEventListener("click", () => {
     const guessedLetter = selectedKey;
-    console.log(guessedLetter);
     if (selectedLetterIndex !== null && guessedLetter) {
       handleGuess(selectedLetterIndex, guessedLetter);
     }
@@ -100,9 +99,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
     //try to submit if key is enter
     if (e.key == "Enter") {
-      console.log("enter pressed");
       if (selectedLetterIndex !== null && guessedLetter) {
-        console.log(selectedLetterIndex, selectedKey);
         handleGuess(selectedLetterIndex, selectedKey);
       }
     }
@@ -126,6 +123,10 @@ window.addEventListener("DOMContentLoaded", () => {
         letterButtons[selectedLetterIndex].style.backgroundColor = "#E54B31";
         displayFeedback("Invalid guess. Please try again.");
       }
+      setTimeout(() => {
+        clearHighlights();
+        selectedLetterIndex = null;
+      }, 400);
     } else {
       displayFeedback("Invalid guess. Please try again.");
     }
@@ -140,7 +141,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Update turns count
     turnsDisplay.textContent = `Turns: ${gameState.turnsTaken}`;
-
+    updateTargetWord();
     // Check win/lose status and provide feedback
     if (gameState.status === "win") {
       displayFeedback(
@@ -152,8 +153,8 @@ window.addEventListener("DOMContentLoaded", () => {
       feedbackDiv.textContent = ""; // clear feedback if game is ongoing
     }
 
-    const targetWordDisplay = document.getElementById("display-target-word");
-    targetWordDisplay.textContent = gameState.targetWord;
+    // const targetWordDisplay = document.getElementById("display-target-word");
+    // targetWordDisplay.textContent = gameState.targetWord;
   }
 
   function clearHighlights() {
@@ -164,6 +165,15 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function displayFeedback(message) {
     feedbackDiv.textContent = message;
+  }
+
+  function updateTargetWord() {
+    const targetWordDisplay = document.querySelectorAll(".target-letter");
+    console.log(targetWordDisplay)
+    targetWordDisplay.forEach((button,index) => {
+      button.textContent = gameState.targetWord.split("")[index];
+    })
+    //targetWordDisplay.textContent = "hi";
   }
 
   updateUI();

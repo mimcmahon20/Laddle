@@ -1,6 +1,5 @@
 let selectedLetterIndex = null;
 
-
 function clearHighlights() {
   document.querySelectorAll(".letter").forEach((button) => {
     button.style.backgroundColor = "transparent";
@@ -53,19 +52,15 @@ async function getRandomWord() {
 async function setRandomWords() {
   const currentWord = await getRandomWord();
   const targetWord = await getRandomWord();
-  
+
   if (!gameState.currentWord || !gameState.targetWord) {
     // If it's the first time (or the words are not set), set the current and target words
     gameState.currentWord = currentWord;
     gameState.targetWord = targetWord;
-    console.log("currentWord", currentWord);
-    console.log("targetWord", targetWord);
   } else {
     // Otherwise, store them for the next turn
     gameState.nextCurrentWord = currentWord;
     gameState.nextTargetWord = targetWord;
-    console.log("currentWord", currentWord);
-    console.log("targetWord", targetWord);
   }
 }
 
@@ -105,5 +100,5 @@ export {
   turnCounter,
   updateWordWithGuess,
   getRandomWord,
-  setRandomWords
+  setRandomWords,
 };

@@ -161,4 +161,5 @@ export {
   updateWordPath,
   generateGameURL,
   generateGameEmojis,
+  resetWordPath,
 };

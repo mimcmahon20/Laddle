@@ -9,6 +9,7 @@ import {
   updateWordPath,
   generateGameURL,
   generateGameEmojis,
+  resetWordPath,
 } from "./gameLogic.js";
 
 let selectedLetterIndex = null;

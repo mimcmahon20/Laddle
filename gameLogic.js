@@ -45,7 +45,7 @@ async function isValidWord(word) {
 async function getRandomWord() {
   try {
     const response = await fetch(
-      "https://random-word-api.herokuapp.com/word?length=4"
+      "https://random-word-api.vercel.app/api?words=1&length=4&type=uppercase"
     );
     const [word] = await response.json(); // API returns an array, we need the first element
     return word.toUpperCase();

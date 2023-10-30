@@ -25,8 +25,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const previousGuess = document.getElementById("previous-guess");
   const shareButton = document.getElementById("share-button");
 
-
-
   let isDarkMode = false;
   let selectedKey = null;
 
@@ -39,6 +37,7 @@ window.addEventListener("DOMContentLoaded", () => {
       if (selectedLetterIndex !== null && guessedLetter) {
         letterButtons[selectedLetterIndex].textContent = guessedLetter;
       }
+      console.log(gameState.pathOfWords);
     });
   });
 
@@ -54,21 +53,14 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   newGameButton.addEventListener("click", async () => {
-    gameState.turnsTaken = 0;
-    gameState.status = "ongoing";
-    gameState.currentWord = gameState.nextCurrentWord;
-    gameState.targetWord = gameState.nextTargetWord;
-    // Update UI
+    resetGame();
     updateUI();
     setRandomWords();
-
-    // Clear feedback if any
-    feedbackDiv.textContent = "";
   });
 
-  shareButton.addEventListener('click', async function() {
+  shareButton.addEventListener("click", async function () {
     // Assuming startWord and targetWord are the words you want to share
-    const startWord = gameState.currentWord;
+    const startWord = gameState.pathOfWords[0];
     const targetWord = gameState.targetWord;
     const pathOfWords = gameState.pathOfWords;
 
@@ -76,14 +68,35 @@ window.addEventListener("DOMContentLoaded", () => {
     const gameURL = generateGameURL(startWord, targetWord);
 
     const emojis = generateGameEmojis(pathOfWords, targetWord);
-    // Copy the text inside the text field
-    //navigator.clipboard.writeText(tempTextArea.value);
-    await navigator.clipboard.writeText(gameURL + emojis);
+
+    //await navigator.clipboard.writeText(gameURL + emojis);
+
+    // Share content using Web Share API
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Check out this game!",
+          text: emojis,
+          url: gameURL,
+        })
+        .then(() => console.log("Successful share"))
+        .catch((error) => console.log("Error sharing", error));
+    } else {
+      // Fallback to copying URL to clipboard
+      const tempTextArea = document.createElement("textarea");
+      document.body.appendChild(tempTextArea);
+      tempTextArea.value = gameURL + "\n\n" + emojis;
+      tempTextArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempTextArea);
+
+      // Notify the user that the URL has been copied
+      alert("Game URL and emojis copied to clipboard!");
+    }
 
     // Notify the user that the URL has been copied
-    alert('Game URL copied to clipboard!');
-});
-
+    //alert("Game URL copied to clipboard!");
+  });
 
   // Highlight the selected letter and store its index
   letterButtons.forEach((button) => {
@@ -96,7 +109,7 @@ window.addEventListener("DOMContentLoaded", () => {
       });
 
       // Highlight the newly selected letter
-      if(isDarkMode) {
+      if (isDarkMode) {
         e.target.style.backgroundColor = "#333";
       } else {
         e.target.style.backgroundColor = "#e0e0e0";
@@ -173,7 +186,8 @@ window.addEventListener("DOMContentLoaded", () => {
     // Check win/lose status and provide feedback
     if (gameState.status === "win") {
       displayFeedback(
-        "Congratulations! You've transformed the word successfully. Your path of words is: " + gameState.pathOfWords.join(" -> ")
+        "Congratulations! You've transformed the word successfully. Your path of words is: " +
+          gameState.pathOfWords.join(" -> ")
       );
     } else if (gameState.status === "lose") {
       displayFeedback("Sorry, you've exceeded the maximum turns. Try again!");
@@ -184,6 +198,16 @@ window.addEventListener("DOMContentLoaded", () => {
     //updatePreviousWordDisplay();
     // const targetWordDisplay = document.getElementById("display-target-word");
     // targetWordDisplay.textContent = gameState.targetWord;
+  }
+
+  function resetGame() {
+    gameState.turnsTaken = 0;
+    gameState.status = "ongoing";
+    gameState.currentWord = gameState.nextCurrentWord;
+    gameState.targetWord = gameState.nextTargetWord;
+    gameState.pathOfWords = [];
+    gameState.pathOfWords.push(gameState.currentWord);
+    feedbackDiv.textContent = "";
   }
 
   function clearHighlights() {
@@ -198,26 +222,26 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function updateTargetWord() {
     const targetWordDisplay = document.querySelectorAll(".target-letter");
-    targetWordDisplay.forEach((button,index) => {
+    targetWordDisplay.forEach((button, index) => {
       button.textContent = gameState.targetWord.split("")[index];
-    })
-    //targetWordDisplay.textContent = "hi";
+    });
   }
 
   function checkIfTargetLetterIsCorrect() {
     const targetWordDisplay = document.querySelectorAll(".target-letter");
-    targetWordDisplay.forEach((button,index) => {
-      if(button.textContent == gameState.currentWord.split("")[index]) {
+    targetWordDisplay.forEach((button, index) => {
+      if (button.textContent == gameState.currentWord.split("")[index]) {
         button.style.color = "#4CAF50";
       } else {
         button.style.color = "#E54B31";
       }
-    })
+    });
   }
 
   function updatePreviousWordDisplay() {
     const previousWordDisplay = document.getElementById("previous-guess");
-    previousWordDisplay.textContent = gameState.pathOfWords[gameState.pathOfWords.length - 2];
+    previousWordDisplay.textContent =
+      gameState.pathOfWords[gameState.pathOfWords.length - 2];
   }
 
   updateUI();

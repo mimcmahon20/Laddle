@@ -5,7 +5,6 @@ import {
   turnCounter,
   checkWinCondition,
   updateWordWithGuess,
-  getRandomWord,
   setRandomWords,
 } from "./gameLogic.js";
 
@@ -70,7 +69,11 @@ window.addEventListener("DOMContentLoaded", () => {
       });
 
       // Highlight the newly selected letter
-      e.target.style.backgroundColor = "#e0e0e0";
+      if(isDarkMode) {
+        e.target.style.backgroundColor = "#333";
+      } else {
+        e.target.style.backgroundColor = "#e0e0e0";
+      }
       selectedLetterIndex = parseInt(e.target.dataset.index);
     });
   });

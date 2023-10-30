@@ -26,6 +26,7 @@ body {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  color: black;
 }
 
 .letter {
@@ -99,6 +100,10 @@ body.dark-mode .letter {
 
 body.dark-mode .letter:hover {
     background-color: #3a3a3a;
+}
+
+body.dark-mode .letter {
+    color: #e0e0e0;
 }
 
 body.dark-mode .game-container {

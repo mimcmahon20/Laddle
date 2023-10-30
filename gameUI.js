@@ -59,45 +59,8 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   shareButton.addEventListener("click", async function () {
-    // Assuming startWord and targetWord are the words you want to share
-    const startWord = gameState.pathOfWords[0];
-    const targetWord = gameState.targetWord;
-    const pathOfWords = gameState.pathOfWords;
-
-    // Generate the URL
-    const gameURL = generateGameURL(startWord, targetWord);
-
-    const emojis = generateGameEmojis(pathOfWords, targetWord);
-
-    //await navigator.clipboard.writeText(gameURL + emojis);
-
-    // Share content using Web Share API
-    if (navigator.share) {
-      navigator
-        .share({
-          title: "Check out this game!",
-          text: emojis,
-          url: gameURL,
-        })
-        .then(() => console.log("Successful share"))
-        .catch((error) => console.log("Error sharing", error));
-    } else {
-      // Fallback to copying URL to clipboard
-      const tempTextArea = document.createElement("textarea");
-      document.body.appendChild(tempTextArea);
-      tempTextArea.value = gameURL + "\n\n" + emojis;
-      tempTextArea.select();
-      await navigator.clipboard.writeText(tempTextArea.value);
-      document.body.removeChild(tempTextArea);
-      
-      // Notify the user that the URL has been copied
-      alert("Game URL and emojis copied to clipboard!");
-    }
-
-    // Notify the user that the URL has been copied
-    //alert("Game URL copied to clipboard!");
+    handleShare();
   });
-
 
   // Highlight the selected letter and store its index
   letterButtons.forEach((button) => {
@@ -221,6 +184,46 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function displayFeedback(message) {
     feedbackDiv.textContent = message;
+  }
+
+  async function handleShare() {
+    // Assuming startWord and targetWord are the words you want to share
+    const startWord = gameState.pathOfWords[0];
+    const targetWord = gameState.targetWord;
+    const pathOfWords = gameState.pathOfWords;
+
+    // Generate the URL
+    const gameURL = generateGameURL(startWord, targetWord);
+
+    const emojis = generateGameEmojis(pathOfWords, targetWord);
+
+    //await navigator.clipboard.writeText(gameURL + emojis);
+
+    // Share content using Web Share API
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Check out this game!",
+          text: "Laddle \n\n" + emojis,
+          url: gameURL,
+        })
+        .then(() => console.log("Successful share"))
+        .catch((error) => console.log("Error sharing", error));
+    } else {
+      // Fallback to copying URL to clipboard
+      const tempTextArea = document.createElement("textarea");
+      document.body.appendChild(tempTextArea);
+      tempTextArea.value = gameURL + "\n\n" + emojis;
+      tempTextArea.select();
+      await navigator.clipboard.writeText(tempTextArea.value);
+      document.body.removeChild(tempTextArea);
+
+      // Notify the user that the URL has been copied
+      alert("Game URL and emojis copied to clipboard!");
+    }
+
+    // Notify the user that the URL has been copied
+    //alert("Game URL copied to clipboard!");
   }
 
   function updateTargetWord() {

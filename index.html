@@ -7,14 +7,43 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-   <div class="settings">
-    <button id="dark-mode-toggle">Toggle Dark Mode</button>
-    <button id="new-game">New Game</button>
-    <button id="share-button">Share Game</button>
-   </div>
+    <!-- The Modal -->
+    <div id="instructionsModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="intro-header">Welcome to Ladderl</h2>
+        <p>The objectives are simple:</p>
+        <ul>
+          <li>
+            Change one letter at a time by selecting the letter you would like
+            to change
+          </li>
+          <img src="assets/startingWord.png" />
+          <li>Play valid, English words</li>
+          <div class="image-wrapper bad">
+            <img
+              src="assets/badGuess.png"
+              alt="An example of a non-english word"
+            />
+          </div>
+          <div class="image-wrapper good">
+            <img
+              src="assets/goodGuess.png"
+              alt="An example of a non-english word"
+            />
+          </div>
+          <li>Reach the Target Word in as few guesses as possible</li>
+          <img src="assets/targetWord.png">
+        </ul>
+      </div>
+    </div>
+
+    
     <div class="game-container">
+      <h3 class="game-title">Ladderl</h3>
+      
       <div class="target-word">
-         <span id="display-target-word" class="target-word-container">
+        <span id="display-target-word" class="target-word-container">
           <div class="target-letter" data-index="0"></div>
           <div class="target-letter" data-index="1"></div>
           <div class="target-letter" data-index="2"></div>
@@ -70,12 +99,18 @@
         </div>
       </div>
 
-
       <div class="feedback"></div>
       <div class="turns"></div>
+      <div class="settings">
+        <button id="dark-mode-toggle">Toggle Dark Mode</button>
+        <button id="new-game">New Game</button>
+        <button id="share-button">Share Game</button>
+      </div>
     </div>
+
 
     <script src="gameLogic.js" type="module"></script>
     <script src="gameUI.js" type="module"></script>
+    <script src="modalLogic.js" type="module"></script>
   </body>
 </html>

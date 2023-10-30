@@ -176,12 +176,12 @@ body.dark-mode .turns {
 
 @media screen and (max-width: 600px) {
    .key {
-         padding: 8px 16px;
+         padding: 15px 16px;
    }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
    .key {
-         padding: 5px;
+         padding: 15px 10px;
    }
 }

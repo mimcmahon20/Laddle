@@ -66,7 +66,7 @@ window.addEventListener("DOMContentLoaded", () => {
     feedbackDiv.textContent = "";
   });
 
-  shareButton.addEventListener('click', function() {
+  shareButton.addEventListener('click', async function() {
     // Assuming startWord and targetWord are the words you want to share
     const startWord = gameState.currentWord;
     const targetWord = gameState.targetWord;
@@ -79,7 +79,11 @@ window.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(tempTextArea);
     tempTextArea.value = gameURL;
     tempTextArea.select();
-    document.execCommand('copy');
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(tempTextArea.value);
+    await navigator.clipboard.writeText(text);
+    console.log(navigator.clipboard.readText());
+
     document.body.removeChild(tempTextArea);
 
     // Notify the user that the URL has been copied

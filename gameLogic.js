@@ -123,14 +123,21 @@ function generateGameURL(start, target) {
   return `https://mimcmahon20.github.io/Laddle?start=${start}&target=${target}`;
 }
 
-// This function copies a text to the clipboard
-function copyToClipboard(text) {
-  const textarea = document.createElement('textarea');
-  textarea.value = text;
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand('copy');
-  document.body.removeChild(textarea);
+function generateGameEmojis(wordPath, answer) {
+  let emojis = "";
+  for (let i = 0; i < wordPath.length; i++) {
+    for (let j = 0; j < wordPath[i].length; j++) {
+      if (wordPath[i][j] === answer[j]) {
+        emojis += "🟩";
+      } else {
+        emojis += "⬛";
+      }
+    }
+    emojis += "\n";
+  }
+
+  console.log(emojis)
+  return emojis;
 }
 
 setRandomWords();
@@ -149,6 +156,6 @@ export {
   getRandomWord,
   setRandomWords,
   updateWordPath,
-  copyToClipboard,
   generateGameURL,
+  generateGameEmojis,
 };

@@ -7,8 +7,8 @@ import {
   updateWordWithGuess,
   setRandomWords,
   updateWordPath,
-  copyToClipboard,
   generateGameURL,
+  generateGameEmojis,
 } from "./gameLogic.js";
 
 let selectedLetterIndex = null;
@@ -70,21 +70,15 @@ window.addEventListener("DOMContentLoaded", () => {
     // Assuming startWord and targetWord are the words you want to share
     const startWord = gameState.currentWord;
     const targetWord = gameState.targetWord;
+    const pathOfWords = gameState.pathOfWords;
 
     // Generate the URL
     const gameURL = generateGameURL(startWord, targetWord);
 
-    // Create a temporary text area to hold the URL
-    const tempTextArea = document.createElement('textarea');
-    //document.body.appendChild(tempTextArea);
-    tempTextArea.value = gameURL;
-    tempTextArea.select();
+    const emojis = generateGameEmojis(pathOfWords, targetWord);
     // Copy the text inside the text field
     //navigator.clipboard.writeText(tempTextArea.value);
-    await navigator.clipboard.writeText(tempTextArea.value);
-    //console.log(navigator.clipboard.readText());
-
-    //document.body.removeChild(tempTextArea);
+    await navigator.clipboard.writeText(gameURL + emojis);
 
     // Notify the user that the URL has been copied
     alert('Game URL copied to clipboard!');

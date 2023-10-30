@@ -16,7 +16,8 @@ body {
 }
 
 #new-game,
-#dark-mode-toggle {
+#dark-mode-toggle,
+#share-button {
   padding: 10px 20px;
   font-size: 1em;
   border: none;
@@ -28,7 +29,8 @@ body {
 }
 
 #new-game:hover,
-#dark-mode-toggle:hover {
+#dark-mode-toggle:hover,
+#share-button:hover {
   background-color: #45a049;  /* A slightly darker shade for hover effect */
 }
 

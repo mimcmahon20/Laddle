@@ -91,12 +91,53 @@ function updateWordWithGuess(index, letter) {
   return currentWordArray.join("");
 }
 
+// This function updates the path of words
 function updateWordPath() {
   gameState.pathOfWords.push(gameState.currentWord);
 }
 
+// This function gets a URL parameter
+function getURLParameters(paramName) {
+  const result = new URLSearchParams(window.location.search).get(paramName);
+  return result ? result : null;
+}
+
+// This function initializes the game state
+function initGameState() {
+  // Get the current and target words from the URL parameters
+  const currentWord = getURLParameters("start");
+  const targetWord = getURLParameters("target");
+
+  // If they exist, set them in the game state
+  if (currentWord && targetWord) {
+    gameState.currentWord = currentWord.toUpperCase();
+    gameState.targetWord = targetWord.toUpperCase();
+  } else {
+    // Otherwise, set random words
+    setRandomWords();
+  }
+}
+
+// This function generates a URL for the next turn
+function generateGameURL(start, target) {
+  return `https://mimcmahon20.github.io/Laddle?start=${start}&target=${target}`;
+}
+
+// This function copies a text to the clipboard
+function copyToClipboard(text) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
+}
+
 setRandomWords();
 updateWordPath();
+initGameState();
+
+console.log(generateGameURL(gameState.currentWord, gameState.targetWord));
 
 export {
   gameState,
@@ -108,4 +149,6 @@ export {
   getRandomWord,
   setRandomWords,
   updateWordPath,
+  copyToClipboard,
+  generateGameURL,
 };

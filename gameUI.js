@@ -7,6 +7,8 @@ import {
   updateWordWithGuess,
   setRandomWords,
   updateWordPath,
+  copyToClipboard,
+  generateGameURL,
 } from "./gameLogic.js";
 
 let selectedLetterIndex = null;
@@ -21,6 +23,10 @@ window.addEventListener("DOMContentLoaded", () => {
   const darkModeToggle = document.getElementById("dark-mode-toggle");
   const keys = document.querySelectorAll(".key");
   const previousGuess = document.getElementById("previous-guess");
+  const shareButton = document.getElementById("share-button");
+
+
+
   let isDarkMode = false;
   let selectedKey = null;
 
@@ -59,6 +65,27 @@ window.addEventListener("DOMContentLoaded", () => {
     // Clear feedback if any
     feedbackDiv.textContent = "";
   });
+
+  shareButton.addEventListener('click', function() {
+    // Assuming startWord and targetWord are the words you want to share
+    const startWord = gameState.currentWord;
+    const targetWord = gameState.targetWord;
+
+    // Generate the URL
+    const gameURL = generateGameURL(startWord, targetWord);
+
+    // Create a temporary text area to hold the URL
+    const tempTextArea = document.createElement('textarea');
+    document.body.appendChild(tempTextArea);
+    tempTextArea.value = gameURL;
+    tempTextArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempTextArea);
+
+    // Notify the user that the URL has been copied
+    alert('Game URL copied to clipboard!');
+});
+
 
   // Highlight the selected letter and store its index
   letterButtons.forEach((button) => {
@@ -114,7 +141,6 @@ window.addEventListener("DOMContentLoaded", () => {
       if (await isValidWord(newWord)) {
         gameState.currentWord = newWord;
         updateWordPath();
-        console.log(gameState.pathOfWords)
         gameState.turnsTaken = turnCounter(gameState.turnsTaken);
         gameState.status = checkWinCondition(
           gameState.currentWord,
@@ -149,7 +175,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // Check win/lose status and provide feedback
     if (gameState.status === "win") {
       displayFeedback(
-        "Congratulations! You've transformed the word successfully."
+        "Congratulations! You've transformed the word successfully. Your path of words is: " + gameState.pathOfWords.join(" -> ")
       );
     } else if (gameState.status === "lose") {
       displayFeedback("Sorry, you've exceeded the maximum turns. Try again!");
@@ -174,7 +200,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function updateTargetWord() {
     const targetWordDisplay = document.querySelectorAll(".target-letter");
-    console.log(targetWordDisplay)
     targetWordDisplay.forEach((button,index) => {
       button.textContent = gameState.targetWord.split("")[index];
     })

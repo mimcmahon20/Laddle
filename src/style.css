@@ -1,0 +1,144 @@
+body {
+  font-family: "Arial", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+/* Default light theme styles */
+body {
+    background-color: white;
+    color: black;
+    /* ... other styles ... */
+}
+
+.game-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.word-display {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.letter {
+  font-size: 2em;
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  border-bottom: 2px solid #333;
+  transition: background-color 0.3s;
+}
+
+.letter:hover {
+  background-color: #f7f7f7;
+}
+
+#guess-input {
+  font-size: 1.2em;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.feedback,
+.turns {
+  margin-top: 10px;
+}
+
+.virtual-keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.keyboard-row {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.key, .submit {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background-color: #f4f4f4;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.key:hover, .submit:hover {
+    background-color: #e0e0e0;
+}
+
+
+/* Dark theme styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+    /* ... other dark mode specific styles ... */
+}
+
+button.dark-mode {
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+    /* ... other button styles for dark mode ... */
+}
+
+body.dark-mode .letter {
+    border-bottom: 2px solid #e0e0e0;
+}
+
+body.dark-mode .letter:hover {
+    background-color: #3a3a3a;
+}
+
+body.dark-mode .game-container {
+    background-color: #2d2d2d;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode #guess-input {
+    background-color: #3a3a3a;
+    color: #e0e0e0;
+    border: 1px solid #e0e0e0;
+}   
+
+body.dark-mode .key, 
+body.dark-mode .submit {
+    background-color: #3a3a3a;
+    color: #e0e0e0;
+    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .key:hover,
+body.dark-mode .submit:hover {
+    background-color: #2d2d2d;
+}
+
+body.dark-mode .feedback,
+body.dark-mode .turns {
+    color: #e0e0e0;
+}
+
+
+
+@media screen and (max-width: 600px) {
+   .key {
+         padding: 5px 10px;
+   }
+}
+
+@media screen and (max-width: 400px) {
+   .key {
+         padding: 5px;
+   }
+}

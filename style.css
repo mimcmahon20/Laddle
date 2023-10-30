@@ -101,6 +101,8 @@ body {
     padding: 10px 20px;
     cursor: pointer;
     border: none;
+    color: black;
+    font-size: 1.2em;
     background-color: #f4f4f4;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s;
@@ -174,7 +176,7 @@ body.dark-mode .turns {
 
 @media screen and (max-width: 600px) {
    .key {
-         padding: 5px 10px;
+         padding: 8px 16px;
    }
 }
 

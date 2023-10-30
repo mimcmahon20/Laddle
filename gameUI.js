@@ -76,15 +76,15 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Create a temporary text area to hold the URL
     const tempTextArea = document.createElement('textarea');
-    document.body.appendChild(tempTextArea);
+    //document.body.appendChild(tempTextArea);
     tempTextArea.value = gameURL;
     tempTextArea.select();
     // Copy the text inside the text field
-    navigator.clipboard.writeText(tempTextArea.value);
-    await navigator.clipboard.writeText(text);
-    console.log(navigator.clipboard.readText());
+    //navigator.clipboard.writeText(tempTextArea.value);
+    await navigator.clipboard.writeText(tempTextArea.value);
+    //console.log(navigator.clipboard.readText());
 
-    document.body.removeChild(tempTextArea);
+    //document.body.removeChild(tempTextArea);
 
     // Notify the user that the URL has been copied
     alert('Game URL copied to clipboard!');

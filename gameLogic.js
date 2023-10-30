@@ -96,6 +96,11 @@ function updateWordPath() {
   gameState.pathOfWords.push(gameState.currentWord);
 }
 
+// This function resets the wordPath
+function resetWordPath() {
+  gameState.pathOfWords = [];
+}
+
 // This function gets a URL parameter
 function getURLParameters(paramName) {
   const result = new URLSearchParams(window.location.search).get(paramName);
@@ -116,6 +121,7 @@ function initGameState() {
     // Otherwise, set random words
     setRandomWords();
   }
+  updateWordPath();
 }
 
 // This function generates a URL for the next turn
@@ -140,11 +146,8 @@ function generateGameEmojis(wordPath, answer) {
   return emojis;
 }
 
-setRandomWords();
-updateWordPath();
-initGameState();
 
-console.log(generateGameURL(gameState.currentWord, gameState.targetWord));
+initGameState();
 
 export {
   gameState,

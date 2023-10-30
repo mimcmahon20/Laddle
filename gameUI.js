@@ -54,8 +54,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   newGameButton.addEventListener("click", async () => {
     resetGame();
-    updateUI();
     setRandomWords();
+    updateUI();
   });
 
   shareButton.addEventListener("click", async function () {
@@ -98,6 +98,7 @@ window.addEventListener("DOMContentLoaded", () => {
     //alert("Game URL copied to clipboard!");
   });
 
+  
   // Highlight the selected letter and store its index
   letterButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
@@ -118,6 +119,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Handle submit button click
   submitButton.addEventListener("click", () => {
     const guessedLetter = selectedKey;
     if (selectedLetterIndex !== null && guessedLetter) {
@@ -125,6 +127,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Handle keyboard input
   document.addEventListener("keydown", (e) => {
     const guessedLetter = e.key.toUpperCase();
 
@@ -205,7 +208,7 @@ window.addEventListener("DOMContentLoaded", () => {
     gameState.status = "ongoing";
     gameState.currentWord = gameState.nextCurrentWord;
     gameState.targetWord = gameState.nextTargetWord;
-    gameState.pathOfWords = [];
+    resetWordPath();
     gameState.pathOfWords.push(gameState.currentWord);
     feedbackDiv.textContent = "";
   }

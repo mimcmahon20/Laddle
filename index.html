@@ -14,11 +14,15 @@
     <div class="game-container">
       <div class="target-word">
          <span id="display-target-word" class="target-word-container">
-          <div class="target-letter" data-index="5"></div>
-          <div class="target-letter" data-index="6"></div>
-          <div class="target-letter" data-index="7"></div>
-          <div class="target-letter" data-index="8"></div>
+          <div class="target-letter" data-index="0"></div>
+          <div class="target-letter" data-index="1"></div>
+          <div class="target-letter" data-index="2"></div>
+          <div class="target-letter" data-index="3"></div>
         </span>
+      </div>
+
+      <div class="previous-word-container">
+        <div id="previous-guess"></div>
       </div>
 
       <div class="word-display">
@@ -67,7 +71,7 @@
 
 
       <div class="feedback"></div>
-      <div class="turns">Turns: 0</div>
+      <div class="turns"></div>
     </div>
 
     <script src="gameLogic.js" type="module"></script>

@@ -1,11 +1,14 @@
-let selectedLetterIndex = null;
+const gameState = {
+  currentWord: "FAST",
+  targetWord: "MAKE",
+  turnsTaken: 0,
+  status: "ongoing", // can be 'ongoing', 'win', or 'lose'
+  pathOfWords: [],
+  nextCurrentWord: null,
+  nextTargetWord: null,
+};
 
-function clearHighlights() {
-  document.querySelectorAll(".letter").forEach((button) => {
-    button.style.backgroundColor = "transparent";
-  });
-}
-
+// This function checks if two words are different by only one letter
 function isOneLetterChanged(word1, word2) {
   if (word1.length !== word2.length) return false;
 
@@ -16,6 +19,8 @@ function isOneLetterChanged(word1, word2) {
   }
   return changes === 1;
 }
+
+// This function checks if a word is valid
 async function isValidWord(word) {
   try {
     const response = await fetch(
@@ -36,6 +41,7 @@ async function isValidWord(word) {
   }
 }
 
+// This function fetches a random word from an API
 async function getRandomWord() {
   try {
     const response = await fetch(
@@ -49,6 +55,8 @@ async function getRandomWord() {
   }
 }
 
+// This function sets the current and target words in the game state
+// and gets new random words for the next turn
 async function setRandomWords() {
   const currentWord = await getRandomWord();
   const targetWord = await getRandomWord();
@@ -64,33 +72,31 @@ async function setRandomWords() {
   }
 }
 
+// This function increments the turn counter
 function turnCounter(turns) {
   return turns + 1;
 }
 
+// This function checks if the game is won or lost
 function checkWinCondition(currentWord, targetWord, turns) {
   if (currentWord === targetWord) return "win";
   if (turns >= 10) return "lose"; // you can adjust the max allowed turns
   return "continue";
 }
 
-const gameState = {
-  currentWord: "FAST",
-  targetWord: "MAKE",
-  turnsTaken: 0,
-  status: "ongoing", // can be 'ongoing', 'win', or 'lose'
-  pathOfWords: [],
-  nextCurrentWord: null,
-  nextTargetWord: null,
-};
-
+// This function updates the current word with the guessed letter
 function updateWordWithGuess(index, letter) {
   const currentWordArray = gameState.currentWord.split("");
   currentWordArray[index] = letter;
   return currentWordArray.join("");
 }
 
+function updateWordPath() {
+  gameState.pathOfWords.push(gameState.currentWord);
+}
+
 setRandomWords();
+updateWordPath();
 
 export {
   gameState,
@@ -101,4 +107,5 @@ export {
   updateWordWithGuess,
   getRandomWord,
   setRandomWords,
+  updateWordPath,
 };

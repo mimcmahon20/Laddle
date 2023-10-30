@@ -6,6 +6,7 @@ import {
   checkWinCondition,
   updateWordWithGuess,
   setRandomWords,
+  updateWordPath,
 } from "./gameLogic.js";
 
 let selectedLetterIndex = null;
@@ -19,6 +20,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const newGameButton = document.getElementById("new-game");
   const darkModeToggle = document.getElementById("dark-mode-toggle");
   const keys = document.querySelectorAll(".key");
+  const previousGuess = document.getElementById("previous-guess");
   let isDarkMode = false;
   let selectedKey = null;
 
@@ -111,6 +113,8 @@ window.addEventListener("DOMContentLoaded", () => {
     if (isOneLetterChanged(gameState.currentWord, newWord)) {
       if (await isValidWord(newWord)) {
         gameState.currentWord = newWord;
+        updateWordPath();
+        console.log(gameState.pathOfWords)
         gameState.turnsTaken = turnCounter(gameState.turnsTaken);
         gameState.status = checkWinCondition(
           gameState.currentWord,
@@ -140,7 +144,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     // Update turns count
-    turnsDisplay.textContent = `Turns: ${gameState.turnsTaken}`;
+    //turnsDisplay.textContent = `Turns: ${gameState.turnsTaken}`;
     updateTargetWord();
     // Check win/lose status and provide feedback
     if (gameState.status === "win") {
@@ -152,7 +156,8 @@ window.addEventListener("DOMContentLoaded", () => {
     } else {
       feedbackDiv.textContent = ""; // clear feedback if game is ongoing
     }
-
+    checkIfTargetLetterIsCorrect();
+    //updatePreviousWordDisplay();
     // const targetWordDisplay = document.getElementById("display-target-word");
     // targetWordDisplay.textContent = gameState.targetWord;
   }
@@ -174,6 +179,22 @@ window.addEventListener("DOMContentLoaded", () => {
       button.textContent = gameState.targetWord.split("")[index];
     })
     //targetWordDisplay.textContent = "hi";
+  }
+
+  function checkIfTargetLetterIsCorrect() {
+    const targetWordDisplay = document.querySelectorAll(".target-letter");
+    targetWordDisplay.forEach((button,index) => {
+      if(button.textContent == gameState.currentWord.split("")[index]) {
+        button.style.color = "#4CAF50";
+      } else {
+        button.style.color = "#E54B31";
+      }
+    })
+  }
+
+  function updatePreviousWordDisplay() {
+    const previousWordDisplay = document.getElementById("previous-guess");
+    previousWordDisplay.textContent = gameState.pathOfWords[gameState.pathOfWords.length - 2];
   }
 
   updateUI();

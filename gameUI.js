@@ -87,9 +87,9 @@ window.addEventListener("DOMContentLoaded", () => {
       document.body.appendChild(tempTextArea);
       tempTextArea.value = gameURL + "\n\n" + emojis;
       tempTextArea.select();
-      document.execCommand("copy");
+      await navigator.clipboard.writeText(tempTextArea.value);
       document.body.removeChild(tempTextArea);
-
+      
       // Notify the user that the URL has been copied
       alert("Game URL and emojis copied to clipboard!");
     }
@@ -98,7 +98,7 @@ window.addEventListener("DOMContentLoaded", () => {
     //alert("Game URL copied to clipboard!");
   });
 
-  
+
   // Highlight the selected letter and store its index
   letterButtons.forEach((button) => {
     button.addEventListener("click", (e) => {

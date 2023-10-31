@@ -10,6 +10,8 @@ import {
   generateGameURL,
   generateGameEmojis,
   resetWordPath,
+  initGameState,
+  todaysStartWord,
 } from "./gameLogic.js";
 
 let selectedLetterIndex = null;
@@ -140,6 +142,11 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  async function initUI() {
+    await initGameState();
+    updateUI();
+  }
+
   function updateUI() {
     // Update displayed word
     const wordArray = gameState.currentWord.split("");
@@ -194,15 +201,21 @@ window.addEventListener("DOMContentLoaded", () => {
     const gameURL = generateGameURL(startWord, targetWord);
 
     const emojis = generateGameEmojis(pathOfWords, targetWord);
-
+    let title = "Ladle";
     //await navigator.clipboard.writeText(gameURL + emojis);
-
+    if(todaysStartWord == gameState.pathOfWords[0]){
+      const date = new Date();
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      title += " - " + month + "/" + day + "\n";
+    }
+    
     // Share content using Web Share API
     if (navigator.share) {
       navigator
         .share({
-          title: "Check out this game!",
-          text: "Laddle \n\n" + emojis,
+          title: "Can you beat this?",
+          text: title + emojis,
           url: gameURL,
         })
         .then(() => console.log("Successful share"))
@@ -211,7 +224,7 @@ window.addEventListener("DOMContentLoaded", () => {
       // Fallback to copying URL to clipboard
       const tempTextArea = document.createElement("textarea");
       document.body.appendChild(tempTextArea);
-      tempTextArea.value = gameURL + "\n\n" + emojis;
+      tempTextArea.value = gameURL + "\n" + title + emojis;
       tempTextArea.select();
       await navigator.clipboard.writeText(tempTextArea.value);
       document.body.removeChild(tempTextArea);
@@ -287,6 +300,5 @@ window.addEventListener("DOMContentLoaded", () => {
         }, parseFloat(animationDuration) * 1000); // Convert to milliseconds
     }
 }
-
-  updateUI();
+  initUI();
 });

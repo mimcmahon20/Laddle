@@ -1,12 +1,14 @@
 const gameState = {
-  currentWord: "FAST",
-  targetWord: "MAKE",
+  currentWord: "",
+  targetWord: "",
   turnsTaken: 0,
   status: "ongoing", // can be 'ongoing', 'win', or 'lose'
   pathOfWords: [],
   nextCurrentWord: null,
   nextTargetWord: null,
 };
+
+let todaysStartWord = "";
 
 // This function checks if two words are different by only one letter
 function isOneLetterChanged(word1, word2) {
@@ -108,7 +110,7 @@ function getURLParameters(paramName) {
 }
 
 // This function initializes the game state
-function initGameState() {
+async function initGameState() {
   // Get the current and target words from the URL parameters
   const currentWord = getURLParameters("start");
   const targetWord = getURLParameters("target");
@@ -118,10 +120,50 @@ function initGameState() {
     gameState.currentWord = currentWord.toUpperCase();
     gameState.targetWord = targetWord.toUpperCase();
   } else {
-    // Otherwise, set random words
+    //otherwise, get today's words
+    let todaysWords;
+    await getWordsForToday().then(data => {
+      todaysWords = data;
+      todaysStartWord = todaysWords.startingWord;
+      gameState.currentWord = todaysWords.startingWord.toUpperCase();
+      gameState.targetWord = todaysWords.targetWord.toUpperCase();
+    });
     setRandomWords();
   }
   updateWordPath();
+}
+
+async function getWordsForToday() {
+  try {
+      // Fetch the JSON file
+      const response = await fetch('word_data.json');
+      if (!response.ok) {
+          console.error('Failed to fetch word_data.json');
+          return null;
+      }
+
+      const wordData = await response.json();
+
+      // Get the current date in the format 'YYYY-MM-DD'
+      const currentDate = new Date().toISOString().slice(0, 10);
+
+      // Find the entry for the current date
+      const todayData = wordData.find(entry => entry.date === currentDate);
+
+      if (todayData) {
+          return {
+              startingWord: todayData.startingWord,
+              targetWord: todayData.targetWord
+          };
+      } else {
+          // Handle the case where there's no entry for the current date
+          console.error('No word data found for today!');
+          return null;
+      }
+  } catch (err) {
+      console.error('Error reading word_data.json:', err);
+      return null;
+  }
 }
 
 // This function generates a URL for the next turn
@@ -141,11 +183,11 @@ function generateGameEmojis(wordPath, answer) {
     }
     emojis += "\n";
   }
-  return emojis;
+  return emojis.trim();
 }
 
 
-initGameState();
+//initGameState();
 
 export {
   gameState,
@@ -160,4 +202,6 @@ export {
   generateGameURL,
   generateGameEmojis,
   resetWordPath,
+  initGameState,
+  todaysStartWord,
 };

@@ -126,7 +126,17 @@ img {
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  animation: fade-in 0.5s ease-out forwards;
 }
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; } 
+}
+
+
 
 .game-title {
   text-align: center;

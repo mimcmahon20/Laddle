@@ -107,20 +107,28 @@ ul > img,
 #dark-mode-toggle,
 #share-button,
 #reset-game {
-  padding: 10px 20px;
+  padding: 5px;
+  height: 75px;
+  width: 75px;
   font-size: 1em;
   border: none;
   border-radius: 5px;
-  background-color: #4CAF50;  /* A shade of green for a fresh look */
+  background-color: rgba(239, 239, 239, 0.362);  /* A shade of green for a fresh look */
   color: white;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease-out, filter 0.3s ease-out;
 }
 
 #new-game:hover,
 #dark-mode-toggle:hover,
 #share-button:hover {
-  background-color: #45a049;  /* A slightly darker shade for hover effect */
+  background-color: #b1b0b0;  /* A slightly darker shade for hover effect */
+}
+
+
+.svg {
+  width: 100%;
+  height: auto;
 }
 
 .game-container {
@@ -205,10 +213,6 @@ ul > img,
   font-size: 2em;
 }
 
-.svg {
-  width: 50%;
-  height: auto;
-}
 
 .virtual-keyboard {
     display: flex;
@@ -321,6 +325,14 @@ body.dark-mode .submit:hover {
 body.dark-mode .feedback,
 body.dark-mode .turns {
     color: #e0e0e0;
+}
+
+body.dark-mode #new-game,
+body.dark-mode #dark-mode-toggle,
+body.dark-mode #share-button,
+body.dark-mode #reset-game {
+  background-color: rgba(37, 37, 37, 0.362);
+  filter:invert(1);
 }
 
 @media screen and (min-width: 1000px) {

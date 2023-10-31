@@ -186,6 +186,12 @@ function generateGameEmojis(wordPath, answer) {
   return emojis.trim();
 }
 
+function resetGameState() {
+  gameState.currentWord = gameState.pathOfWords[0];
+  gameState.turnsTaken = 0;
+  gameState.status = "ongoing";
+  gameState.pathOfWords = [gameState.currentWord];
+}
 
 //initGameState();
 
@@ -204,4 +210,5 @@ export {
   resetWordPath,
   initGameState,
   todaysStartWord,
+  resetGameState,
 };

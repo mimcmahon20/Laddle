@@ -12,6 +12,7 @@ import {
   resetWordPath,
   initGameState,
   todaysStartWord,
+  resetGameState,
 } from "./gameLogic.js";
 
 let selectedLetterIndex = null;
@@ -29,6 +30,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const shareButton = document.getElementById("share-button");
   const shareModel = document.getElementById("shareModal");
   const resultsPath = document.getElementById("results-path");
+  const resetButton = document.getElementById("reset-game");
   let isDarkMode = false;
   let selectedKey = null;
 
@@ -58,6 +60,11 @@ window.addEventListener("DOMContentLoaded", () => {
   newGameButton.addEventListener("click", async () => {
     resetGame();
     setRandomWords();
+    updateUI();
+  });
+
+  resetButton.addEventListener("click", async () => {
+    resetGameState();
     updateUI();
   });
 

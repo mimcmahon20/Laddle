@@ -60,7 +60,8 @@ body {
   cursor: pointer;
 }
 
-img {
+ul > img,
+.image-wrapper > img {
   width: 45%;
   height: auto;
   margin-bottom: 20px;
@@ -202,6 +203,11 @@ img {
   right: 4%;
   top: 4%;
   font-size: 2em;
+}
+
+.svg {
+  width: 50%;
+  height: auto;
 }
 
 .virtual-keyboard {

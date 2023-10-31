@@ -50,10 +50,10 @@ window.addEventListener("DOMContentLoaded", () => {
     isDarkMode = !isDarkMode; // Toggle the dark mode flag
     if (isDarkMode) {
       document.body.classList.add("dark-mode");
-      darkModeToggle.textContent = "Toggle Light Mode";
+      darkModeToggle.innerHTML = '<img class="svg" src="/assets/moon.svg" alt="Toggle Light Mode" />';
     } else {
       document.body.classList.remove("dark-mode");
-      darkModeToggle.textContent = "Toggle Dark Mode";
+      darkModeToggle.innerHTML = '<img class="svg" src="/assets/sun.svg" alt="Toggle Dark Mode" />';
     }
   });
 

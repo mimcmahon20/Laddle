@@ -58,7 +58,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   newGameButton.addEventListener("click", async () => {
-    resetGame();
+    await resetGame();
     setRandomWords();
     updateUI();
   });
@@ -68,7 +68,7 @@ window.addEventListener("DOMContentLoaded", () => {
     updateUI();
   });
 
-  shareButton.addEventListener("click", async function () {
+  shareButton.addEventListener("click", async function() {
     handleShare();
   });
 
@@ -181,7 +181,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // targetWordDisplay.textContent = gameState.targetWord;
   }
 
-  function resetGame() {
+  async function resetGame() {
     gameState.turnsTaken = 0;
     gameState.status = "ongoing";
     gameState.currentWord = gameState.nextCurrentWord;

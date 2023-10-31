@@ -58,8 +58,8 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   newGameButton.addEventListener("click", async () => {
-    await setRandomWords();
     await resetGame();
+    await setRandomWords();
     setTimeout(updateUI(), 20);
   });
 

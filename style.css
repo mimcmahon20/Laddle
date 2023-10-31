@@ -219,6 +219,25 @@ img {
 }
 
 
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 0, 0, 0.7); /* Red by default */
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  transform-origin: center center;
+  animation: spin 3s linear infinite, fall 3s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fall {
+  from { top: -10px; }
+  to { top: 100%; }
+}
+
 /* Dark theme styles */
 body.dark-mode {
     background-color: #121212;

@@ -225,6 +225,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   function displayShareModel() {
+    triggerConfetti();
     shareModel.style.display = "block";
 
 
@@ -260,6 +261,32 @@ window.addEventListener("DOMContentLoaded", () => {
     previousWordDisplay.textContent =
       gameState.pathOfWords[gameState.pathOfWords.length - 2];
   }
+
+  function triggerConfetti() {
+    const confettiCount = 100;
+    const parentElement = document.body; // Can be any container where you want the confetti
+
+    for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+
+        // Randomize properties for each confetti particle
+        const left = Math.random() * 100 + 'vw';
+        const animationDuration = (Math.random() * 3 + 2) + 's';
+        const backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+
+        confetti.style.left = left;
+        confetti.style.animationDuration = animationDuration;
+        confetti.style.backgroundColor = backgroundColor;
+
+        parentElement.appendChild(confetti);
+
+        // Optional: Remove confetti from the DOM after animation completes to free up resources
+        setTimeout(() => {
+            confetti.remove();
+        }, parseFloat(animationDuration) * 1000); // Convert to milliseconds
+    }
+}
 
   updateUI();
 });

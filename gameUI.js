@@ -138,6 +138,9 @@ window.addEventListener("DOMContentLoaded", () => {
         updateUI();
       } else {
         letterButtons[selectedLetterIndex].style.backgroundColor = "#E54B31";
+        setTimeout(() => {
+          letterButtons[selectedLetterIndex].textContent = gameState.pathOfWords[gameState.pathOfWords.length - 1][index];
+        }, 50)
         displayFeedback("Invalid guess. Please try again.");
       }
       setTimeout(() => {
@@ -208,7 +211,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const gameURL = generateGameURL(startWord, targetWord);
 
     const emojis = generateGameEmojis(pathOfWords, targetWord);
-    let title = "Ladle";
+    let title = "Ladderl";
     //await navigator.clipboard.writeText(gameURL + emojis);
     if(todaysStartWord == gameState.pathOfWords[0]){
       const date = new Date();

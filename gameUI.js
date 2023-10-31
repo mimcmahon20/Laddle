@@ -137,18 +137,16 @@ window.addEventListener("DOMContentLoaded", () => {
         letterButtons[selectedLetterIndex].style.backgroundColor = "#4CAF50";
         updateUI();
       } else {
-        letterButtons[selectedLetterIndex].style.backgroundColor = "#E54B31";
+        letterButtons[selectedLetterIndex].style.backgroundColor = "#e85d46";
         setTimeout(() => {
           letterButtons[selectedLetterIndex].textContent = gameState.pathOfWords[gameState.pathOfWords.length - 1][index];
         }, 50)
-        displayFeedback("Invalid guess. Please try again.");
       }
       setTimeout(() => {
         clearHighlights();
         selectedLetterIndex = null;
       }, 400);
     } else {
-      displayFeedback("Invalid guess. Please try again.");
     }
   }
 

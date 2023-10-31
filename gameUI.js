@@ -165,7 +165,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     // Update turns count
-    //turnsDisplay.textContent = `Turns: ${gameState.turnsTaken}`;
+    turnsDisplay.textContent = `${gameState.turnsTaken}`;
     updateTargetWord();
     // Check win/lose status and provide feedback
     if (gameState.status === "win") {

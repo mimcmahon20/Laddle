@@ -123,6 +123,7 @@ img {
 }
 
 .game-container {
+  position: relative;
   background: #fff;
   padding: 20px;
   border-radius: 5px;
@@ -195,9 +196,12 @@ img {
   margin-right: 10px;
 }
 
-.feedback,
 .turns {
   margin-top: 10px;
+  position: absolute;
+  right: 4%;
+  top: 4%;
+  font-size: 2em;
 }
 
 .virtual-keyboard {

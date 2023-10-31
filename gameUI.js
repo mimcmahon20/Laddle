@@ -25,7 +25,8 @@ window.addEventListener("DOMContentLoaded", () => {
   const keys = document.querySelectorAll(".key");
   const previousGuess = document.getElementById("previous-guess");
   const shareButton = document.getElementById("share-button");
-
+  const shareModel = document.getElementById("shareModal");
+  const resultsPath = document.getElementById("results-path");
   let isDarkMode = false;
   let selectedKey = null;
 
@@ -38,7 +39,6 @@ window.addEventListener("DOMContentLoaded", () => {
       if (selectedLetterIndex !== null && guessedLetter) {
         letterButtons[selectedLetterIndex].textContent = guessedLetter;
       }
-      console.log(gameState.pathOfWords);
     });
   });
 
@@ -152,10 +152,7 @@ window.addEventListener("DOMContentLoaded", () => {
     updateTargetWord();
     // Check win/lose status and provide feedback
     if (gameState.status === "win") {
-      displayFeedback(
-        "Congratulations! You've transformed the word successfully. Your path of words is: " +
-          gameState.pathOfWords.join(" -> ")
-      );
+      displayShareModel();
     } else if (gameState.status === "lose") {
       displayFeedback("Sorry, you've exceeded the maximum turns. Try again!");
     } else {
@@ -225,6 +222,19 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Notify the user that the URL has been copied
     //alert("Game URL copied to clipboard!");
+  }
+
+  function displayShareModel() {
+    shareModel.style.display = "block";
+
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[1];
+    resultsPath.textContent = gameState.pathOfWords.join(" -> ");
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      shareModel.style.display = "none";
+    };
   }
 
   function updateTargetWord() {

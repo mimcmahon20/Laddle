@@ -20,3 +20,4 @@ window.onclick = function(event) {
 window.onload = function() {
   modal.style.display = "block";
 }
+

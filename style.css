@@ -79,7 +79,7 @@ img {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 6em; /* adjust as needed */
+  font-size: 5em; /* adjust as needed */
   font-weight: bold;
   color: red;
   z-index: 1;
@@ -93,7 +93,7 @@ img {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 6em; /* adjust as needed */
+  font-size: 5em; /* adjust as needed */
   font-weight: bold;
   color: lime;
   z-index: 1;
@@ -212,7 +212,7 @@ img {
 
 .settings {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   gap: 20px;
   margin-top: 20px;
@@ -281,11 +281,18 @@ body.dark-mode .turns {
     .key {
           padding: 25px 35px;
     }
+
+    .good::after, .bad::after {
+      font-size: 7em;
+    }
 }
 
 @media screen and (max-width: 600px) {
    .key {
          padding: 15px 16px;
+   }
+   .good::after, .bad::after {
+     font-size: 3em;
    }
 }
 

@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Word Transformation Game</title>
+    <title>Ladderl</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- The Modal -->
+    <!-- The Instruction Modal -->
     <div id="instructionsModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
@@ -33,15 +33,28 @@
             />
           </div>
           <li>Reach the Target Word in as few guesses as possible</li>
-          <img src="assets/targetWord.png">
+          <img src="assets/targetWord.png" />
         </ul>
       </div>
     </div>
 
-    
+    <!-- The Share/Results Modal -->
+    <div id="shareModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="share-close">&times;</span>
+        <h2 class="intro-header">Congratulations!</h2>
+        <p>You have reached the target word with the following path:</p>
+        <div id="results-path"></div>
+        <p>Share your results with your friends!</p>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <button id="share-button">Share Game</button>
+        </div>
+      </div>
+    </div>
+
     <div class="game-container">
       <h3 class="game-title">Ladderl</h3>
-      
+
       <div class="target-word">
         <span id="display-target-word" class="target-word-container">
           <div class="target-letter" data-index="0"></div>
@@ -104,10 +117,8 @@
       <div class="settings">
         <button id="dark-mode-toggle">Toggle Dark Mode</button>
         <button id="new-game">New Game</button>
-        <button id="share-button">Share Game</button>
       </div>
     </div>
-
 
     <script src="gameLogic.js" type="module"></script>
     <script src="gameUI.js" type="module"></script>

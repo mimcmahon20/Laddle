@@ -141,8 +141,6 @@ function generateGameEmojis(wordPath, answer) {
     }
     emojis += "\n";
   }
-
-  console.log(emojis)
   return emojis;
 }
 

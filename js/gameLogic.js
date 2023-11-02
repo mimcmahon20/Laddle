@@ -136,7 +136,7 @@ async function initGameState() {
 async function getWordsForToday() {
   try {
       // Fetch the JSON file
-      const response = await fetch('word_data.json');
+      const response = await fetch('js/word_data.json');
       if (!response.ok) {
           console.error('Failed to fetch word_data.json');
           return null;

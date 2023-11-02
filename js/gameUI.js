@@ -121,6 +121,12 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    darkModeToggle.click();
+} else {
+    // the dark mode is not enabled
+}
+
   async function handleGuess(index, letter) {
     const newWord = updateWordWithGuess(index, letter);
     // Both checks are now asynchronous

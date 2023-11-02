@@ -2,7 +2,8 @@
 
 Embark on a lexical adventure with Ladderl, a captivating word game that challenges your vocabulary and strategic thinking. Transform one word into another through a series of steps, changing one letter at a time, and explore a network of word connections along the way. Whether you're a logophile or a casual gamer, Ladderl offers an intriguing escape into the realm of words.
 
-![Game Screenshot](screenshot.png)
+![Game Screenshot](assets/instructions.png)
+![Game Screenshot](assets/game.png)
 
 ## Features
 

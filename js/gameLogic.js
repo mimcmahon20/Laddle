@@ -46,7 +46,7 @@ async function initGameState() {
 async function loadWordList() {
   try {
     const response = await fetch("js/wordList.json");
-    console.log('got response')
+    console.log('got response from wordList.json')
     const data = await response.json();
     data.forEach((word) => wordList.add(word.toUpperCase()));
   }
@@ -58,6 +58,7 @@ async function loadWordList() {
 async function loadNeighborsDict() {
   try {
     const response = await fetch("js/wordNeighbors.json");
+    console.log('got response from wordNeighbors.json')
     const data = await response.json();
     return data;
   } catch (error) {

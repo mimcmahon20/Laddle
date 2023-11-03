@@ -250,6 +250,7 @@ window.addEventListener("DOMContentLoaded", () => {
       title += " - " + month + "/" + day + "\n";
     }
 
+    title += "- " + gameState.turnsTaken + " turns\n";
     // Share content using Web Share API
     if (navigator.share) {
       navigator

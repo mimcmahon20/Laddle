@@ -1,3 +1,4 @@
+
 const gameState = {
   currentWord: "",
   targetWord: "",
@@ -9,6 +10,31 @@ const gameState = {
 };
 
 let todaysStartWord = "";
+
+const wordList = new Set();
+let neighborsDict = {};
+
+// This function loads the wordList from the JSON file
+async function loadWordList() {
+  try {
+    const response = await fetch("js/wordlist.json");
+    const data = await response.json();
+    data.forEach((word) => wordList.add(word.toUpperCase()));
+  }
+  catch (error) {
+    console.error("Error loading word list:", error);
+  }
+}
+
+async function loadNeighborsDict() {
+  try {
+    const response = await fetch("js/wordNeighbors.json");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Could not load word neighbors dictionary:', error);
+  }
+}
 
 // This function checks if two words are different by only one letter
 function isOneLetterChanged(word1, word2) {
@@ -23,45 +49,27 @@ function isOneLetterChanged(word1, word2) {
 }
 
 // This function checks if a word is valid
-async function isValidWord(word) {
-  try {
-    const response = await fetch(
-      `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
-    );
-    const data = await response.json();
-
-    // Check if the response contains a title indicating no definitions found
-    if (data.title && data.title === "No Definitions Found") {
-      return false;
-    }
-
-    // If there's no error title, assume it's a valid word
-    return true;
-  } catch (error) {
-    console.error("Error checking word validity:", error);
-    return false;
-  }
+function isValidWord(word) {
+  return wordList.has(word.toUpperCase());  
 }
 
 // This function fetches a random word from an API
-async function getRandomWord() {
-  try {
-    const response = await fetch(
-      "https://random-word-api.vercel.app/api?words=1&length=4&type=uppercase"
-    );
-    const [word] = await response.json(); // API returns an array, we need the first element
-    return word.toUpperCase();
-  } catch (error) {
-    console.error("Error fetching random word:", error);
-    return null;
-  }
+function getRandomWord() {
+  const randomNumOne = Math.floor(Math.random() * 2096);
+  const arrWordList = Array.from(wordList);
+  return arrWordList[randomNumOne];
 }
 
 // This function sets the current and target words in the game state
 // and gets new random words for the next turn
-async function setRandomWords() {
-  const currentWord = await getRandomWord();
-  const targetWord = await getRandomWord();
+function setRandomWords() {
+  let currentWord = getRandomWord();
+  let targetWord = getRandomWord();
+
+  while(currentWord === targetWord) {
+    currentWord = getRandomWord();
+    targetWord = getRandomWord();
+  }
 
   if (!gameState.currentWord || !gameState.targetWord) {
     // If it's the first time (or the words are not set), set the current and target words
@@ -80,9 +88,8 @@ function turnCounter(turns) {
 }
 
 // This function checks if the game is won or lost
-function checkWinCondition(currentWord, targetWord, turns) {
+function checkWinCondition(currentWord, targetWord) {
   if (currentWord === targetWord) return "win";
-  if (turns >= 10) return "lose"; // you can adjust the max allowed turns
   return "continue";
 }
 
@@ -111,9 +118,12 @@ function getURLParameters(paramName) {
 
 // This function initializes the game state
 async function initGameState() {
+  await loadWordList();
+  neighborsDict = await loadNeighborsDict();
   // Get the current and target words from the URL parameters
   const currentWord = getURLParameters("start");
   const targetWord = getURLParameters("target");
+
 
   // If they exist, set them in the game state
   if (currentWord && targetWord) {
@@ -131,6 +141,7 @@ async function initGameState() {
     setRandomWords();
   }
   updateWordPath();
+  
 }
 
 async function getWordsForToday() {
@@ -211,4 +222,6 @@ export {
   initGameState,
   todaysStartWord,
   resetGameState,
+  wordList,
+  neighborsDict,
 };

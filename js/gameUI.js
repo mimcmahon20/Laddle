@@ -13,7 +13,13 @@ import {
   initGameState,
   todaysStartWord,
   resetGameState,
+  wordList,
 } from "./gameLogic.js";
+
+import {
+  findShortestPath,
+} from "./shortestPath.js";
+
 
 let selectedLetterIndex = null;
 
@@ -26,11 +32,11 @@ window.addEventListener("DOMContentLoaded", () => {
   const newGameButton = document.getElementById("new-game");
   const darkModeToggle = document.getElementById("dark-mode-toggle");
   const keys = document.querySelectorAll(".key");
-  const previousGuess = document.getElementById("previous-guess");
   const shareButton = document.getElementById("share-button");
   const shareModel = document.getElementById("shareModal");
   const resultsPath = document.getElementById("results-path");
   const resetButton = document.getElementById("reset-game");
+  const shortestPath = document.getElementById("shortest-path");
   let isDarkMode = false;
   let selectedKey = null;
 
@@ -52,8 +58,8 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   newGameButton.addEventListener("click", async () => {
-    await resetGame();
-    await setRandomWords();
+    resetGame();
+    setRandomWords();
     setTimeout(updateUI(), 20);
   });
 
@@ -101,10 +107,17 @@ window.addEventListener("DOMContentLoaded", () => {
       document.body.classList.add("dark-mode");
       darkModeToggle.innerHTML =
         '<img class="svg" src="assets/sun.svg" alt="Toggle Light Mode" />';
+        if(selectedLetterIndex != null) {
+          letterButtons[selectedLetterIndex].style.backgroundColor = "#545454";
+        }
     } else {
       document.body.classList.remove("dark-mode");
       darkModeToggle.innerHTML =
         '<img class="svg" src="assets/moon.svg" alt="Toggle Dark Mode" />';
+        if(selectedLetterIndex != null) {
+          letterButtons[selectedLetterIndex].style.backgroundColor = "#e0e0e0";
+        }
+      
     }
   }
 
@@ -118,7 +131,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Highlight the newly selected letter
     if (isDarkMode) {
-      e.target.style.backgroundColor = "#333";
+      e.target.style.backgroundColor = "#545454";
     } else {
       e.target.style.backgroundColor = "#e0e0e0";
     }
@@ -156,7 +169,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const newWord = updateWordWithGuess(index, letter);
     // Both checks are now asynchronous
     if (isOneLetterChanged(gameState.currentWord, newWord)) {
-      if (await isValidWord(newWord)) {
+      if (isValidWord(newWord)) {
         gameState.currentWord = newWord;
         updateWordPath();
         gameState.turnsTaken = turnCounter(gameState.turnsTaken);
@@ -200,8 +213,6 @@ window.addEventListener("DOMContentLoaded", () => {
     // Check win/lose status and provide feedback
     if (gameState.status === "win") {
       displayShareModel();
-    } else if (gameState.status === "lose") {
-      displayFeedback("Sorry, you've exceeded the maximum turns. Try again!");
     } else {
       feedbackDiv.textContent = ""; // clear feedback if game is ongoing
     }
@@ -236,7 +247,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const startWord = gameState.pathOfWords[0];
     const targetWord = gameState.targetWord;
     const pathOfWords = gameState.pathOfWords;
-
+    
     // Generate the URL
     const gameURL = generateGameURL(startWord, targetWord);
 
@@ -281,10 +292,11 @@ window.addEventListener("DOMContentLoaded", () => {
   function displayShareModel() {
     triggerConfetti();
     shareModel.style.display = "block";
-
+    const shortestPathArr = findShortestPath(gameState.pathOfWords[0], gameState.targetWord);
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[1];
-    resultsPath.textContent = gameState.pathOfWords.join(" -> ");
+    resultsPath.textContent = "Your path (" + gameState.pathOfWords.length + "): " + gameState.pathOfWords.join(" -> ");
+    shortestPath.textContent = "Shortest path: (" + shortestPathArr.length +"): " + shortestPathArr.join(" -> ");
     // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
       shareModel.style.display = "none";

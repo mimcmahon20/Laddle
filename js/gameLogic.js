@@ -45,7 +45,7 @@ async function initGameState() {
 // This function loads the wordList from the JSON file
 async function loadWordList() {
   try {
-    const response = await fetch("/js/wordlist.json");
+    const response = await fetch("/js/wordList.json");
     console.log('got response')
     const data = await response.json();
     data.forEach((word) => wordList.add(word.toUpperCase()));

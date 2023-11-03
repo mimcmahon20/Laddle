@@ -1,3 +1,4 @@
+
 const gameState = {
   currentWord: "",
   targetWord: "",
@@ -87,9 +88,8 @@ function turnCounter(turns) {
 }
 
 // This function checks if the game is won or lost
-function checkWinCondition(currentWord, targetWord, turns) {
+function checkWinCondition(currentWord, targetWord) {
   if (currentWord === targetWord) return "win";
-  if (turns >= 10) return "lose"; // you can adjust the max allowed turns
   return "continue";
 }
 
@@ -141,6 +141,7 @@ async function initGameState() {
     setRandomWords();
   }
   updateWordPath();
+  
 }
 
 async function getWordsForToday() {

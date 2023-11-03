@@ -206,8 +206,6 @@ window.addEventListener("DOMContentLoaded", () => {
     // Check win/lose status and provide feedback
     if (gameState.status === "win") {
       displayShareModel();
-    } else if (gameState.status === "lose") {
-      displayFeedback("Sorry, you've exceeded the maximum turns. Try again!");
     } else {
       feedbackDiv.textContent = ""; // clear feedback if game is ongoing
     }

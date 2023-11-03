@@ -14,10 +14,39 @@ let todaysStartWord = "";
 const wordList = new Set();
 let neighborsDict = {};
 
+// This function initializes the game state
+async function initGameState() {
+  await loadWordList();
+  neighborsDict = await loadNeighborsDict();
+  // Get the current and target words from the URL parameters
+  const currentWord = getURLParameters("start");
+  const targetWord = getURLParameters("target");
+
+
+  // If they exist, set them in the game state
+  if (currentWord && targetWord) {
+    gameState.currentWord = currentWord.toUpperCase();
+    gameState.targetWord = targetWord.toUpperCase();
+  } else {
+    //otherwise, get today's words
+    let todaysWords;
+    await getWordsForToday().then(data => {
+      todaysWords = data;
+      todaysStartWord = todaysWords.startingWord;
+      gameState.currentWord = todaysWords.startingWord.toUpperCase();
+      gameState.targetWord = todaysWords.targetWord.toUpperCase();
+    });
+    setRandomWords();
+  }
+  updateWordPath();
+  
+}
+
 // This function loads the wordList from the JSON file
 async function loadWordList() {
   try {
-    const response = await fetch("js/wordlist.json");
+    const response = await fetch("/js/wordlist.json");
+    console.log('got response')
     const data = await response.json();
     data.forEach((word) => wordList.add(word.toUpperCase()));
   }
@@ -28,7 +57,7 @@ async function loadWordList() {
 
 async function loadNeighborsDict() {
   try {
-    const response = await fetch("js/wordNeighbors.json");
+    const response = await fetch("/js/wordNeighbors.json");
     const data = await response.json();
     return data;
   } catch (error) {
@@ -114,34 +143,6 @@ function resetWordPath() {
 function getURLParameters(paramName) {
   const result = new URLSearchParams(window.location.search).get(paramName);
   return result ? result : null;
-}
-
-// This function initializes the game state
-async function initGameState() {
-  await loadWordList();
-  neighborsDict = await loadNeighborsDict();
-  // Get the current and target words from the URL parameters
-  const currentWord = getURLParameters("start");
-  const targetWord = getURLParameters("target");
-
-
-  // If they exist, set them in the game state
-  if (currentWord && targetWord) {
-    gameState.currentWord = currentWord.toUpperCase();
-    gameState.targetWord = targetWord.toUpperCase();
-  } else {
-    //otherwise, get today's words
-    let todaysWords;
-    await getWordsForToday().then(data => {
-      todaysWords = data;
-      todaysStartWord = todaysWords.startingWord;
-      gameState.currentWord = todaysWords.startingWord.toUpperCase();
-      gameState.targetWord = todaysWords.targetWord.toUpperCase();
-    });
-    setRandomWords();
-  }
-  updateWordPath();
-  
 }
 
 async function getWordsForToday() {

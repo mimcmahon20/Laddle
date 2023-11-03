@@ -34,27 +34,21 @@ window.addEventListener("DOMContentLoaded", () => {
   let isDarkMode = false;
   let selectedKey = null;
 
+  // Event Listeners
+  letterButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      handleLetterSelection(e);
+    });
+  });
+
   keys.forEach((key) => {
     key.addEventListener("click", (e) => {
-      const guessedLetter = e.target.getAttribute("data-key");
-      if (guessedLetter) {
-        selectedKey = guessedLetter;
-      }
-      if (selectedLetterIndex !== null && guessedLetter) {
-        letterButtons[selectedLetterIndex].textContent = guessedLetter;
-      }
+      handleKeyPress(e);
     });
   });
 
   darkModeToggle.addEventListener("click", () => {
-    isDarkMode = !isDarkMode; // Toggle the dark mode flag
-    if (isDarkMode) {
-      document.body.classList.add("dark-mode");
-      darkModeToggle.innerHTML = '<img class="svg" src="assets/sun.svg" alt="Toggle Light Mode" />';
-    } else {
-      document.body.classList.remove("dark-mode");
-      darkModeToggle.innerHTML = '<img class="svg" src="assets/moon.svg" alt="Toggle Dark Mode" />';
-    }
+    handleDarkModeToggle();
   });
 
   newGameButton.addEventListener("click", async () => {
@@ -68,40 +62,77 @@ window.addEventListener("DOMContentLoaded", () => {
     updateUI();
   });
 
-  shareButton.addEventListener("click", async function() {
+  shareButton.addEventListener("click", async function () {
     handleShare();
   });
 
-  // Highlight the selected letter and store its index
-  letterButtons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      // Reset all letters to their current state
-      const wordArray = gameState.currentWord.split("");
-      letterButtons.forEach((btn, idx) => {
-        btn.textContent = wordArray[idx];
-        btn.style.backgroundColor = "transparent"; // Reset color
-      });
-
-      // Highlight the newly selected letter
-      if (isDarkMode) {
-        e.target.style.backgroundColor = "#333";
-      } else {
-        e.target.style.backgroundColor = "#e0e0e0";
-      }
-      selectedLetterIndex = parseInt(e.target.dataset.index);
-    });
+  submitButton.addEventListener("click", () => {
+    handleSubmit();
   });
 
-  // Handle submit button click
-  submitButton.addEventListener("click", () => {
+  document.addEventListener("keydown", (e) => {
+    handleKeyboardInput(e);
+  });
+
+  if (
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  ) {
+    darkModeToggle.click();
+  } else {
+    // the dark mode is not enabled
+  }
+
+
+  //helper functions below
+  function handleKeyPress(e) {
+    const guessedLetter = e.target.getAttribute("data-key");
+    if (guessedLetter) {
+      selectedKey = guessedLetter;
+    }
+    if (selectedLetterIndex !== null && guessedLetter) {
+      letterButtons[selectedLetterIndex].textContent = guessedLetter;
+    }
+  }
+
+  function handleDarkModeToggle() {
+    isDarkMode = !isDarkMode; // Toggle the dark mode flag
+    if (isDarkMode) {
+      document.body.classList.add("dark-mode");
+      darkModeToggle.innerHTML =
+        '<img class="svg" src="assets/sun.svg" alt="Toggle Light Mode" />';
+    } else {
+      document.body.classList.remove("dark-mode");
+      darkModeToggle.innerHTML =
+        '<img class="svg" src="assets/moon.svg" alt="Toggle Dark Mode" />';
+    }
+  }
+
+  function handleLetterSelection(e) {
+    // Reset all letters to their current state
+    const wordArray = gameState.currentWord.split("");
+    letterButtons.forEach((btn, idx) => {
+      btn.textContent = wordArray[idx];
+      btn.style.backgroundColor = "transparent"; // Reset color
+    });
+
+    // Highlight the newly selected letter
+    if (isDarkMode) {
+      e.target.style.backgroundColor = "#333";
+    } else {
+      e.target.style.backgroundColor = "#e0e0e0";
+    }
+    selectedLetterIndex = parseInt(e.target.dataset.index);
+  }
+
+  function handleSubmit() {
     const guessedLetter = selectedKey;
     if (selectedLetterIndex !== null && guessedLetter) {
       handleGuess(selectedLetterIndex, guessedLetter);
     }
-  });
+  }
 
-  // Handle keyboard input
-  document.addEventListener("keydown", (e) => {
+  function handleKeyboardInput(e) {
     const guessedLetter = e.key.toUpperCase();
 
     if (
@@ -119,13 +150,7 @@ window.addEventListener("DOMContentLoaded", () => {
         handleGuess(selectedLetterIndex, selectedKey);
       }
     }
-  });
-
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    darkModeToggle.click();
-} else {
-    // the dark mode is not enabled
-}
+  }
 
   async function handleGuess(index, letter) {
     const newWord = updateWordWithGuess(index, letter);
@@ -145,8 +170,9 @@ window.addEventListener("DOMContentLoaded", () => {
       } else {
         letterButtons[selectedLetterIndex].style.backgroundColor = "#e85d46";
         setTimeout(() => {
-          letterButtons[selectedLetterIndex].textContent = gameState.pathOfWords[gameState.pathOfWords.length - 1][index];
-        }, 50)
+          letterButtons[selectedLetterIndex].textContent =
+            gameState.pathOfWords[gameState.pathOfWords.length - 1][index];
+        }, 50);
       }
       setTimeout(() => {
         clearHighlights();
@@ -213,17 +239,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Generate the URL
     const gameURL = generateGameURL(startWord, targetWord);
-    
+
     const emojis = generateGameEmojis(pathOfWords, targetWord);
     let title = "Ladderl";
     //await navigator.clipboard.writeText(gameURL + emojis);
-    if(todaysStartWord == gameState.pathOfWords[0]){
+    if (todaysStartWord == gameState.pathOfWords[0]) {
       const date = new Date();
       const day = date.getDate();
       const month = date.getMonth() + 1;
       title += " - " + month + "/" + day + "\n";
     }
-    
+
     // Share content using Web Share API
     if (navigator.share) {
       navigator
@@ -255,7 +281,6 @@ window.addEventListener("DOMContentLoaded", () => {
     triggerConfetti();
     shareModel.style.display = "block";
 
-
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[1];
     resultsPath.textContent = gameState.pathOfWords.join(" -> ");
@@ -276,7 +301,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const targetWordDisplay = document.querySelectorAll(".target-letter");
     targetWordDisplay.forEach((button, index) => {
       if (button.textContent == gameState.currentWord.split("")[index]) {
-        button.style.backgroundColor = "#4CAF50 !important";
+        button.style.backgroundColor = "#4CAF50";
       } else {
         button.style.backgroundColor = "#E54B31";
       }
@@ -294,25 +319,25 @@ window.addEventListener("DOMContentLoaded", () => {
     const parentElement = document.body; // Can be any container where you want the confetti
 
     for (let i = 0; i < confettiCount; i++) {
-        const confetti = document.createElement('div');
-        confetti.classList.add('confetti');
+      const confetti = document.createElement("div");
+      confetti.classList.add("confetti");
 
-        // Randomize properties for each confetti particle
-        const left = Math.random() * 100 + 'vw';
-        const animationDuration = (Math.random() * 3 + 2) + 's';
-        const backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+      // Randomize properties for each confetti particle
+      const left = Math.random() * 100 + "vw";
+      const animationDuration = Math.random() * 3 + 2 + "s";
+      const backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
 
-        confetti.style.left = left;
-        confetti.style.animationDuration = animationDuration;
-        confetti.style.backgroundColor = backgroundColor;
+      confetti.style.left = left;
+      confetti.style.animationDuration = animationDuration;
+      confetti.style.backgroundColor = backgroundColor;
 
-        parentElement.appendChild(confetti);
+      parentElement.appendChild(confetti);
 
-        // Optional: Remove confetti from the DOM after animation completes to free up resources
-        setTimeout(() => {
-            confetti.remove();
-        }, parseFloat(animationDuration) * 1000); // Convert to milliseconds
+      // Optional: Remove confetti from the DOM after animation completes to free up resources
+      setTimeout(() => {
+        confetti.remove();
+      }, parseFloat(animationDuration) * 1000); // Convert to milliseconds
     }
-}
+  }
   initUI();
 });

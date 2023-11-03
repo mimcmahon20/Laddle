@@ -1,8 +1,3 @@
-import {
-  findShortestPath,
-  findNeighbors,
-} from "./shortestPath.js";
-
 const gameState = {
   currentWord: "",
   targetWord: "",
@@ -16,7 +11,7 @@ const gameState = {
 let todaysStartWord = "";
 
 const wordList = new Set();
-let wordListArr = [];
+let neighborsDict = {};
 
 // This function loads the wordList from the JSON file
 async function loadWordList() {
@@ -27,6 +22,16 @@ async function loadWordList() {
   }
   catch (error) {
     console.error("Error loading word list:", error);
+  }
+}
+
+async function loadNeighborsDict() {
+  try {
+    const response = await fetch("js/wordNeighbors.json");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Could not load word neighbors dictionary:', error);
   }
 }
 
@@ -114,6 +119,7 @@ function getURLParameters(paramName) {
 // This function initializes the game state
 async function initGameState() {
   await loadWordList();
+  neighborsDict = await loadNeighborsDict();
   // Get the current and target words from the URL parameters
   const currentWord = getURLParameters("start");
   const targetWord = getURLParameters("target");
@@ -135,11 +141,6 @@ async function initGameState() {
     setRandomWords();
   }
   updateWordPath();
-  wordListArr = Array.from(wordList);
-  console.log(wordList)
-  console.log(getRandomWord())
-  console.log()
-  console.log(findShortestPath("MATE", "ZIPS"));
 }
 
 async function getWordsForToday() {
@@ -221,4 +222,5 @@ export {
   todaysStartWord,
   resetGameState,
   wordList,
+  neighborsDict,
 };

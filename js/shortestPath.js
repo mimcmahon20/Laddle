@@ -1,25 +1,10 @@
 import {
-    wordList,
-    isOneLetterChanged,
-    isValidWord,
+    neighborsDict,
 } from "./gameLogic.js"
 
 // function to find neighbors of a word
 function findNeighbors(word) {
-    word = word.toUpperCase();
-    let neighbors = [];
-    for (let i = 0; i < word.length; i++) {
-        for (let c = 0; c < 26; c++) { // loop through all letters A to Z
-            const newWordArray = [...word];
-            newWordArray[i] = String.fromCharCode(65 + c); // 65 is the char code for 'A'
-            const newWord = newWordArray.join('');
-            console.log(newWord);
-            if (newWord !== word && isValidWord(newWord)) {
-                neighbors.push(newWord);
-            }
-        }
-    }
-    return neighbors;
+    return neighborsDict[word] || [];
 }
 
 // Breadth-first search function to find shortest path between two words

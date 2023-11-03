@@ -16,6 +16,11 @@ import {
   wordList,
 } from "./gameLogic.js";
 
+import {
+  findShortestPath,
+} from "./shortestPath.js";
+
+
 let selectedLetterIndex = null;
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -27,11 +32,11 @@ window.addEventListener("DOMContentLoaded", () => {
   const newGameButton = document.getElementById("new-game");
   const darkModeToggle = document.getElementById("dark-mode-toggle");
   const keys = document.querySelectorAll(".key");
-  const previousGuess = document.getElementById("previous-guess");
   const shareButton = document.getElementById("share-button");
   const shareModel = document.getElementById("shareModal");
   const resultsPath = document.getElementById("results-path");
   const resetButton = document.getElementById("reset-game");
+  const shortestPath = document.getElementById("shortest-path");
   let isDarkMode = false;
   let selectedKey = null;
 
@@ -157,7 +162,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const newWord = updateWordWithGuess(index, letter);
     // Both checks are now asynchronous
     if (isOneLetterChanged(gameState.currentWord, newWord)) {
-      if (await isValidWord(newWord)) {
+      if (isValidWord(newWord)) {
         gameState.currentWord = newWord;
         updateWordPath();
         gameState.turnsTaken = turnCounter(gameState.turnsTaken);
@@ -237,7 +242,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const startWord = gameState.pathOfWords[0];
     const targetWord = gameState.targetWord;
     const pathOfWords = gameState.pathOfWords;
-
+    
     // Generate the URL
     const gameURL = generateGameURL(startWord, targetWord);
 
@@ -285,7 +290,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[1];
-    resultsPath.textContent = gameState.pathOfWords.join(" -> ");
+    resultsPath.textContent = "Your path: " + gameState.pathOfWords.join(" -> ");
+    shortestPath.textContent = findShortestPath("Shortest path:" + gameState.pathOfWords[0], gameState.targetWord).join(" -> ");
     // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
       shareModel.style.display = "none";

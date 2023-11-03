@@ -213,7 +213,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Generate the URL
     const gameURL = generateGameURL(startWord, targetWord);
-
+    
     const emojis = generateGameEmojis(pathOfWords, targetWord);
     let title = "Ladderl";
     //await navigator.clipboard.writeText(gameURL + emojis);
@@ -276,9 +276,9 @@ window.addEventListener("DOMContentLoaded", () => {
     const targetWordDisplay = document.querySelectorAll(".target-letter");
     targetWordDisplay.forEach((button, index) => {
       if (button.textContent == gameState.currentWord.split("")[index]) {
-        button.style.color = "#4CAF50";
+        button.style.backgroundColor = "#4CAF50 !important";
       } else {
-        button.style.color = "#E54B31";
+        button.style.backgroundColor = "#E54B31";
       }
     });
   }

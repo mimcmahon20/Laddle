@@ -56,3 +56,8 @@ Special thanks to the following APIs that make Ladderl possible:
 - **Random Word API:** This API is employed to fetch random words for gameplay, adding an element of surprise to each game session. [API link](https://random-word-api.vercel.app)
 
 Your support and resources have been invaluable in the development of Ladderl!
+
+## To-Do & Future features:
+- **Backend database and local storage for leaderboard, stats, "account"**
+- **Optimization problem finding shortest possible path**
+- **Ladderl.com url**

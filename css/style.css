@@ -33,10 +33,13 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: "Reem Kufi Fun", sans-serif;
+  font-size: 1.5em;
 }
 
 /* Modal Content */
 .modal-content {
+  font-family: "Cabin", sans-serif;
   background-color: #fefefe;
   margin: 5% auto; /* 15% from the top and centered */
   padding: 20px;
@@ -47,13 +50,14 @@ body {
     60%
   ); /* Could be more or less, depending on screen size */
   border-radius: 5px;
+  font-size: 1.2em;
 }
 
 /* The Close Button */
 .close {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 32px;
   font-weight: bold;
 }
 
@@ -68,7 +72,7 @@ ul > img,
 .image-wrapper > img {
   width: 45%;
   height: auto;
-  margin-bottom: 20px;
+  padding: 20px 0;
 }
 
 .image-wrapper {
@@ -104,6 +108,36 @@ ul > img,
   z-index: 1;
   pointer-events: none; /* makes the X non-interactive */
   overflow: hidden;
+}
+
+header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+  height: 10%;
+}
+
+
+.game-title {
+  width: 100%;
+  text-align: center;
+  letter-spacing: tighter;
+  font-size: 2.875rem;
+  letter-spacing: 10px;
+  font-weight: 700;
+  margin-bottom: 1em;
+  /* font-family: 'Cabin', sans-serif; */
+  font-family: 'Reem Kufi Fun', sans-serif;
+  /* font-family: "Rubik Mono One", monospace; */
+  font-size: 2em;
+  text-align: center;
+  text-transform: uppercase;
+  text-anchor: middle;
+  fill: #333;
+  position: relative;
 }
 
 #new-game,
@@ -155,22 +189,13 @@ ul > img,
   }
 }
 
-.game-title {
-  text-align: center;
-  letter-spacing: tighter;
-  font-size: 2.875rem;
-  letter-spacing: 10px;
-  font-weight: 700;
-  margin-bottom: 1em;
-  /* font-family: 'Cabin', sans-serif; */
-  font-family: 'Reem Kufi Fun', sans-serif;
-  /* font-family: "Rubik Mono One", monospace; */
-  font-size: 2em;
-  text-align: center;
-  text-transform: uppercase;
-  text-anchor: middle;
-  fill: #333;
-  position: relative;
+
+.top-game-container {
+  padding: 10px 10;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
 .word-display,
@@ -178,9 +203,9 @@ ul > img,
 .target-word-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
   color: black;
   align-items: center;
+  font-size: 2rem;
 }
 
 .target-letter {
@@ -242,7 +267,7 @@ ul > img,
 .submit {
   font-family: 'Reem Kufi Fun', sans-serif;
   /* font-family: "Source Code Pro", monospace; */
-  padding: 10px 20px;
+  padding: 20px 20px;
   cursor: pointer;
   border: none;
   color: black;

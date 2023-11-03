@@ -102,32 +102,41 @@
       </div>
     </div>
 
-    <div class="game-container">
+    <header>
       <h1 class="game-title">
         Ladderl
-        <div class="turns"></div>
       </h1>
+    </header>
 
-      <div class="target-word">
-        <span id="display-target-word" class="target-word-container">
-          <div class="target-letter" data-index="0"></div>
-          <div class="target-letter" data-index="1"></div>
-          <div class="target-letter" data-index="2"></div>
-          <div class="target-letter" data-index="3"></div>
-        </span>
+    <div class="game-container">
+      
+      <div class="game-title" >
+        <div class="turns"></div>
       </div>
 
-      <div class="previous-word-container">
-        <div id="previous-guess"></div>
+      <div class="top-game-container">
+        <div class="target-word">
+          <span id="display-target-word" class="target-word-container">
+            <div class="key target-letter" data-index="0"></div>
+            <div class="key target-letter" data-index="1"></div>
+            <div class="key target-letter" data-index="2"></div>
+            <div class="key target-letter" data-index="3"></div>
+          </span>
+        </div>
+  
+        <div class="previous-word-container">
+          <div id="previous-guess"></div>
+        </div>
+  
+        <div class="word-display">
+          <!-- Each letter of the current word will be a button -->
+          <button class="key letter" data-index="0"></button>
+          <button class="key letter" data-index="1"></button>
+          <button class="key letter" data-index="2"></button>
+          <button class="key letter" data-index="3"></button>
+        </div>
       </div>
 
-      <div class="word-display">
-        <!-- Each letter of the current word will be a button -->
-        <button class="letter" data-index="0"></button>
-        <button class="letter" data-index="1"></button>
-        <button class="letter" data-index="2"></button>
-        <button class="letter" data-index="3"></button>
-      </div>
 
       <div class="virtual-keyboard">
         <div class="keyboard-row">
@@ -177,6 +186,10 @@
         </button>
       </div>
     </div>
+
+    <footer>
+      <h3></h3>
+    </footer>
 
     <script src="js/gameLogic.js" type="module"></script>
     <script src="js/gameUI.js" type="module"></script>

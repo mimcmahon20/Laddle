@@ -412,6 +412,7 @@ body.dark-mode #reset-game {
 
 @media screen and (max-width: 500px) {
   .key {
+    font-size: 1em;
     padding: 15px 10px;
   }
 }

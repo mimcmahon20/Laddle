@@ -292,11 +292,11 @@ window.addEventListener("DOMContentLoaded", () => {
   function displayShareModel() {
     triggerConfetti();
     shareModel.style.display = "block";
-
+    const shortestPathArr = findShortestPath(gameState.pathOfWords[0], gameState.targetWord);
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[1];
-    resultsPath.textContent = "Your path: " + gameState.pathOfWords.join(" -> ");
-    shortestPath.textContent = findShortestPath("Shortest path:" + gameState.pathOfWords[0], gameState.targetWord).join(" -> ");
+    resultsPath.textContent = "Your path (" + gameState.pathOfWords.length + "): " + gameState.pathOfWords.join(" -> ");
+    shortestPath.textContent = "Shortest path: (" + shortestPathArr.length +"): " + shortestPathArr.join(" -> ");
     // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
       shareModel.style.display = "none";

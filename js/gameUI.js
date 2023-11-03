@@ -58,8 +58,8 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   newGameButton.addEventListener("click", async () => {
-    await resetGame();
-    await setRandomWords();
+    resetGame();
+    setRandomWords();
     setTimeout(updateUI(), 20);
   });
 
@@ -107,10 +107,17 @@ window.addEventListener("DOMContentLoaded", () => {
       document.body.classList.add("dark-mode");
       darkModeToggle.innerHTML =
         '<img class="svg" src="assets/sun.svg" alt="Toggle Light Mode" />';
+        if(selectedLetterIndex != null) {
+          letterButtons[selectedLetterIndex].style.backgroundColor = "#545454";
+        }
     } else {
       document.body.classList.remove("dark-mode");
       darkModeToggle.innerHTML =
         '<img class="svg" src="assets/moon.svg" alt="Toggle Dark Mode" />';
+        if(selectedLetterIndex != null) {
+          letterButtons[selectedLetterIndex].style.backgroundColor = "#e0e0e0";
+        }
+      
     }
   }
 
@@ -124,7 +131,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Highlight the newly selected letter
     if (isDarkMode) {
-      e.target.style.backgroundColor = "#333";
+      e.target.style.backgroundColor = "#545454";
     } else {
       e.target.style.backgroundColor = "#e0e0e0";
     }

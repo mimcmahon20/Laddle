@@ -13,6 +13,7 @@ import {
   initGameState,
   todaysStartWord,
   resetGameState,
+  wordList,
 } from "./gameLogic.js";
 
 let selectedLetterIndex = null;

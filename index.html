@@ -12,6 +12,12 @@
       rel="stylesheet"
     />
 
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,7 +41,6 @@
     />
   </head>
 
-
   <!-- Google tag (gtag.js) -->
   <script
     async
@@ -50,7 +55,6 @@
 
     gtag("config", "G-8BPHK42DPP");
   </script>
-
 
   <body>
     <!-- The Instruction Modal -->
@@ -103,14 +107,11 @@
     </div>
 
     <header>
-      <h1 class="game-title">
-        Ladderl
-      </h1>
+      <h1 class="game-title">Ladderl</h1>
     </header>
 
     <div class="game-container">
-      
-      <div class="game-title" >
+      <div class="game-title">
         <div class="turns"></div>
       </div>
 
@@ -123,11 +124,11 @@
             <div class="key target-letter" data-index="3"></div>
           </span>
         </div>
-  
+
         <div class="previous-word-container">
           <div id="previous-guess"></div>
         </div>
-  
+
         <div class="word-display">
           <!-- Each letter of the current word will be a button -->
           <button class="key letter" data-index="0"></button>
@@ -136,7 +137,6 @@
           <button class="key letter" data-index="3"></button>
         </div>
       </div>
-
 
       <div class="virtual-keyboard">
         <div class="keyboard-row">

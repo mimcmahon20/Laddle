@@ -243,6 +243,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   async function handleShare() {
+    
     // Assuming startWord and targetWord are the words you want to share
     const startWord = gameState.pathOfWords[0];
     const targetWord = gameState.targetWord;

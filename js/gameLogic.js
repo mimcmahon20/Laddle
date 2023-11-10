@@ -181,7 +181,7 @@ async function getWordsForToday() {
 
 // This function generates a URL for the next turn
 function generateGameURL(start, target) {
-  return `https://mimcmahon20.github.io/Laddrl?start=${start}&target=${target}`;
+  return `https://mimcmahon20.github.io/Ladderl?start=${start}&target=${target}`;
 }
 
 function generateGameEmojis(wordPath, answer) {

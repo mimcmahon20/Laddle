@@ -166,6 +166,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   async function handleGuess(index, letter) {
+    console.log(findShortestPath(gameState.currentWord, gameState.targetWord));
     const newWord = updateWordWithGuess(index, letter);
     // Both checks are now asynchronous
     if (isOneLetterChanged(gameState.currentWord, newWord)) {

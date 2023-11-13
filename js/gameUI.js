@@ -202,6 +202,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateUI() {
+    console.log(findShortestPath(gameState.currentWord, gameState.targetWord));
     // Update displayed word
     const wordArray = gameState.currentWord.split("");
     letterButtons.forEach((button, index) => {

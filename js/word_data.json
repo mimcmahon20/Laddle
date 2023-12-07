@@ -1,162 +1,287 @@
 [
     {
-        "date": "2023-10-30",
-        "startingWord": "TASK",
-        "targetWord": "JULY"
+        "date": "2024-01-05",
+        "startingWord": "NEST",
+        "targetWord": "CHOP"
     },
     {
-        "date": "2023-10-31",
-        "startingWord": "BONE",
-        "targetWord": "SCAR"
+        "date": "2024-01-06",
+        "startingWord": "PUTT",
+        "targetWord": "ICON"
     },
     {
-        "date": "2023-11-01",
-        "startingWord": "CAPE",
-        "targetWord": "NERD"
+        "date": "2024-01-07",
+        "startingWord": "STEP",
+        "targetWord": "ONTO"
     },
     {
-        "date": "2023-11-02",
-        "startingWord": "MOVE",
-        "targetWord": "KEEP"
+        "date": "2024-01-08",
+        "startingWord": "RAMP",
+        "targetWord": "DART"
     },
     {
-        "date": "2023-11-03",
-        "startingWord": "GORY",
-        "targetWord": "KNEE"
+        "date": "2024-01-09",
+        "startingWord": "BOLT",
+        "targetWord": "NAME"
     },
     {
-        "date": "2023-11-04",
-        "startingWord": "LUNG",
-        "targetWord": "HURT"
+        "date": "2024-01-10",
+        "startingWord": "SASH",
+        "targetWord": "WISE"
     },
     {
-        "date": "2023-11-05",
-        "startingWord": "ONTO",
-        "targetWord": "MYTH"
+        "date": "2024-01-11",
+        "startingWord": "GRAY",
+        "targetWord": "DOSE"
     },
     {
-        "date": "2023-11-06",
-        "startingWord": "SILK",
-        "targetWord": "PLOP"
+        "date": "2024-01-12",
+        "startingWord": "LAIR",
+        "targetWord": "SPEW"
     },
     {
-        "date": "2023-11-07",
-        "startingWord": "HASH",
-        "targetWord": "WIFE"
+        "date": "2024-01-13",
+        "startingWord": "USED",
+        "targetWord": "COPY"
     },
     {
-        "date": "2023-11-08",
-        "startingWord": "AHOY",
-        "targetWord": "TAPS"
+        "date": "2024-01-14",
+        "startingWord": "JINX",
+        "targetWord": "CONE"
     },
     {
-        "date": "2023-11-09",
-        "startingWord": "JULY",
-        "targetWord": "BOAT"
+        "date": "2024-01-15",
+        "startingWord": "LAIR",
+        "targetWord": "RIOT"
     },
     {
-        "date": "2023-11-10",
-        "startingWord": "ACRE",
-        "targetWord": "FAME"
+        "date": "2024-01-16",
+        "startingWord": "DECK",
+        "targetWord": "SULK"
     },
     {
-        "date": "2023-11-11",
-        "startingWord": "SLUG",
-        "targetWord": "PURR"
+        "date": "2024-01-17",
+        "startingWord": "IDLY",
+        "targetWord": "ALTO"
     },
     {
-        "date": "2023-11-12",
-        "startingWord": "WALK",
+        "date": "2024-01-18",
+        "startingWord": "GOUT",
+        "targetWord": "CRUX"
+    },
+    {
+        "date": "2024-01-19",
+        "startingWord": "SHUN",
+        "targetWord": "DECK"
+    },
+    {
+        "date": "2024-01-20",
+        "startingWord": "PORK",
+        "targetWord": "SPUD"
+    },
+    {
+        "date": "2024-01-21",
+        "startingWord": "PANG",
+        "targetWord": "OOZY"
+    },
+    {
+        "date": "2024-01-22",
+        "startingWord": "BOXY",
+        "targetWord": "GOOD"
+    },
+    {
+        "date": "2024-01-23",
+        "startingWord": "FLIP",
+        "targetWord": "FLED"
+    },
+    {
+        "date": "2024-01-24",
+        "startingWord": "BOOK",
         "targetWord": "KIWI"
     },
     {
-        "date": "2023-11-13",
-        "startingWord": "MOLD",
-        "targetWord": "CART"
+        "date": "2024-01-25",
+        "startingWord": "PERM",
+        "targetWord": "HUFF"
     },
     {
-        "date": "2023-11-14",
-        "startingWord": "ROMP",
-        "targetWord": "GAWK"
+        "date": "2024-01-26",
+        "startingWord": "COPE",
+        "targetWord": "ASHY"
     },
     {
-        "date": "2023-11-15",
-        "startingWord": "ONTO",
-        "targetWord": "JINX"
+        "date": "2024-01-27",
+        "startingWord": "WOOL",
+        "targetWord": "DUSK"
     },
     {
-        "date": "2023-11-16",
-        "startingWord": "WILT",
-        "targetWord": "RUSE"
+        "date": "2024-01-28",
+        "startingWord": "FOIL",
+        "targetWord": "SLUM"
     },
     {
-        "date": "2023-11-17",
-        "startingWord": "WAVY",
-        "targetWord": "DREW"
+        "date": "2024-01-29",
+        "startingWord": "YOGA",
+        "targetWord": "LINT"
     },
     {
-        "date": "2023-11-18",
-        "startingWord": "WIFI",
-        "targetWord": "FEEL"
+        "date": "2024-01-30",
+        "startingWord": "ATOP",
+        "targetWord": "LINE"
     },
     {
-        "date": "2023-11-19",
-        "startingWord": "BLOG",
-        "targetWord": "OKAY"
+        "date": "2024-01-31",
+        "startingWord": "DUST",
+        "targetWord": "STEP"
     },
     {
-        "date": "2023-11-20",
-        "startingWord": "SPRY",
+        "date": "2024-02-01",
+        "startingWord": "USER",
         "targetWord": "ARMY"
     },
     {
-        "date": "2023-11-21",
-        "startingWord": "HUFF",
-        "targetWord": "AVID"
+        "date": "2024-02-02",
+        "startingWord": "UNIT",
+        "targetWord": "DORK"
     },
     {
-        "date": "2023-11-22",
-        "startingWord": "GAWK",
-        "targetWord": "PLUG"
+        "date": "2024-02-03",
+        "startingWord": "PLUG",
+        "targetWord": "RELY"
     },
     {
-        "date": "2023-11-23",
-        "startingWord": "WOMB",
-        "targetWord": "WOOL"
+        "date": "2024-02-04",
+        "startingWord": "CRUX",
+        "targetWord": "MOLD"
     },
     {
-        "date": "2023-11-24",
-        "startingWord": "BULK",
-        "targetWord": "TALL"
+        "date": "2024-02-05",
+        "startingWord": "GOUT",
+        "targetWord": "RELY"
     },
     {
-        "date": "2023-11-25",
+        "date": "2024-02-06",
+        "startingWord": "FLOP",
+        "targetWord": "SLUG"
+    },
+    {
+        "date": "2024-02-07",
+        "startingWord": "BATH",
+        "targetWord": "FANG"
+    },
+    {
+        "date": "2024-02-08",
+        "startingWord": "DREW",
+        "targetWord": "PESO"
+    },
+    {
+        "date": "2024-02-09",
+        "startingWord": "COLA",
+        "targetWord": "WORD"
+    },
+    {
+        "date": "2024-02-10",
+        "startingWord": "TILL",
+        "targetWord": "UNIT"
+    },
+    {
+        "date": "2024-02-11",
+        "startingWord": "GOAL",
+        "targetWord": "BUSH"
+    },
+    {
+        "date": "2024-02-12",
+        "startingWord": "BUNT",
+        "targetWord": "AFAR"
+    },
+    {
+        "date": "2024-02-13",
+        "startingWord": "JURY",
+        "targetWord": "WING"
+    },
+    {
+        "date": "2024-02-14",
+        "startingWord": "GOON",
+        "targetWord": "SAME"
+    },
+    {
+        "date": "2024-02-15",
+        "startingWord": "GRAB",
+        "targetWord": "BOOK"
+    },
+    {
+        "date": "2024-02-16",
+        "startingWord": "ALOE",
+        "targetWord": "GRIP"
+    },
+    {
+        "date": "2024-02-17",
+        "startingWord": "ALTO",
+        "targetWord": "TURF"
+    },
+    {
+        "date": "2024-02-18",
+        "startingWord": "PULL",
+        "targetWord": "AHOY"
+    },
+    {
+        "date": "2024-02-19",
+        "startingWord": "LIFE",
+        "targetWord": "PULL"
+    },
+    {
+        "date": "2024-02-20",
+        "startingWord": "AMID",
+        "targetWord": "DUST"
+    },
+    {
+        "date": "2024-02-21",
+        "startingWord": "JUMP",
+        "targetWord": "SAME"
+    },
+    {
+        "date": "2024-02-22",
+        "startingWord": "ATOP",
+        "targetWord": "SHUT"
+    },
+    {
+        "date": "2024-02-23",
+        "startingWord": "COLT",
+        "targetWord": "TASK"
+    },
+    {
+        "date": "2024-02-24",
         "startingWord": "THEE",
-        "targetWord": "SILK"
+        "targetWord": "BUSH"
     },
     {
-        "date": "2023-11-26",
-        "startingWord": "ACRE",
-        "targetWord": "SPRY"
+        "date": "2024-02-25",
+        "startingWord": "BUNT",
+        "targetWord": "LAST"
     },
     {
-        "date": "2023-11-27",
-        "startingWord": "POET",
-        "targetWord": "ACID"
+        "date": "2024-02-26",
+        "startingWord": "ATOP",
+        "targetWord": "GOWN"
     },
     {
-        "date": "2023-11-28",
-        "startingWord": "WILT",
-        "targetWord": "TILE"
+        "date": "2024-02-27",
+        "startingWord": "YEAH",
+        "targetWord": "SLIP"
     },
     {
-        "date": "2023-11-29",
-        "startingWord": "VOID",
-        "targetWord": "SKID"
+        "date": "2024-02-28",
+        "startingWord": "CUBE",
+        "targetWord": "KEPT"
     },
     {
-        "date": "2023-11-30",
-        "startingWord": "BRIM",
-        "targetWord": "USED"
+        "date": "2024-02-29",
+        "startingWord": "GNAT",
+        "targetWord": "LAIR"
+    },
+    {
+        "date": "2024-03-01",
+        "startingWord": "SASH",
+        "targetWord": "GONE"
     }
 ]

@@ -11,8 +11,8 @@ async function fetchWord() {
 
 async function generateData() {
     const data = [];
-    let currentDate = new Date(2024, 1, 1); // Jan 5th, 2023
-    const endDate = new Date(2024, 12, 30);  // Feb 1st, 2024
+    let currentDate = new Date(2023, 12, 1); // Jan 5th, 2023
+    const endDate = new Date(2024, 3, 30);  // Feb 1st, 2024
 
     while (currentDate <= endDate) {
         const startingWord = await fetchWord();

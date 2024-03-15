@@ -1,3 +1,7 @@
+import {
+  findShortestPath,
+} from "./shortestPath.js";
+
 
 const gameState = {
   currentWord: "",
@@ -93,19 +97,23 @@ function getRandomWord() {
 // This function sets the current and target words in the game state
 // and gets new random words for the next turn
 function setRandomWords() {
-  let currentWord = getRandomWord();
-  let targetWord = getRandomWord();
-
-  while(currentWord === targetWord) {
+  let pathBetweenWords = false;
+  let currentWord;
+  let targetWord;
+  while (!pathBetweenWords) {
     currentWord = getRandomWord();
     targetWord = getRandomWord();
+    let path = findShortestPath(currentWord, targetWord, neighborsDict);
+    if (path) {
+      pathBetweenWords = true;
+    }
   }
-
   if (!gameState.currentWord || !gameState.targetWord) {
     // If it's the first time (or the words are not set), set the current and target words
     gameState.currentWord = currentWord;
     gameState.targetWord = targetWord;
   } else {
+    
     // Otherwise, store them for the next turn
     gameState.nextCurrentWord = currentWord;
     gameState.nextTargetWord = targetWord;
